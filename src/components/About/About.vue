@@ -26,9 +26,7 @@ export default {
 
 <style scoped>
 .headline {
-  color: white;
-  margin-top: 8rem;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 800;
   text-shadow: 1px 1px 0px var(--yellow),
 	4px 2px 0px var(--yellow),
