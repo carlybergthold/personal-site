@@ -1,0 +1,68 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Set your colors
+$primary: #2f9395;
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+
+// $teal: #2f9395;
+// $yellow: #ffe100;
+// $orange: #f16a43;
+// $red: #ec1c4b;
+// $green: #a6206a;
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(
+  (
+    "white": (
+      $white,
+      $black,
+    ),
+    "black": (
+      $black,
+      $white,
+    ),
+    "light": (
+      $light,
+      $light-invert,
+    ),
+    "dark": (
+      $dark,
+      $dark-invert,
+    ),
+    "primary": (
+      $primary,
+      $primary-invert,
+      $primary-light,
+      $primary-dark,
+    ),
+    "link": (
+      $link,
+      $link-invert,
+      $link-light,
+      $link-dark,
+    ),
+  ),
+  $custom-colors
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// // Navbar
+$navbar-item-color: var(--teal);
+$navbar-item-hover-color: var(--teal);
+$navbar-item-hover-background-color: var(--bg-main);
+$navbar-height: 4rem;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
