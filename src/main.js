@@ -21,6 +21,7 @@ const mediaQueries = new MediaQueries({
 Vue.use(mediaQueries);
 
 const routes = [
+  { path: '/', component: HelloWorld },
   { path: '/home', component: HelloWorld },
   { path: '/projects', component: Projects },
   { path: '/about', component: About },
