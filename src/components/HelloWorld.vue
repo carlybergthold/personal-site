@@ -4,32 +4,36 @@
       <div class="container has-text-centered">
         <p class="headline title has-text-black">
           software engineer</p>
-        <p class="subtitle">+ travel fiend, amateur cook, & bright yellow bike rider</p>
+        <p class="subtitle">+ travel fiend, amateur chef, & bright yellow bike rider</p>
       </div>
     </div>
     <div class="hero-foot">
-      <nav class="tabs is-fullwidth">
         <div class="container has-text-centered">
-          <b-icon
-              pack="fab"
-              icon="linkedin"
-              size="is-large"
-              type="is-primary">
-          </b-icon>
-          <b-icon
-              pack="fab"
-              icon="github-square"
-              size="is-large"
-              type="is-primary">
-          </b-icon>
-          <b-icon
-              pack="fab"
-              icon="twitter-square"
-              size="is-large"
-              type="is-primary">
-          </b-icon>
+            <a href="https://www.linkedin.com/in/carlybergthold/" target="_blank">
+              <b-icon
+                pack="fab"
+                icon="linkedin"
+                size="is-large"
+                type="is-primary">
+              </b-icon>
+            </a>
+            <a href="https://www.instagram.com/carlymita/" target="_blank">
+              <b-icon
+                pack="fab"
+                icon="instagram"
+                size="is-large"
+                type="is-primary">
+              </b-icon>
+            </a>
+            <a href="https://github.com/carlybergthold" target="_blank">
+              <b-icon
+                pack="fab"
+                icon="github-square"
+                size="is-large"
+                type="is-primary">
+              </b-icon>
+            </a>
         </div>
-      </nav>
     </div>
   </section>
 </template>
@@ -53,7 +57,6 @@ export default {
 }
 .headline {
   font-size: 4rem;
-  font-weight: 800;
   text-shadow: 1px 1px 0px var(--teal),
 	4px 2px 0px var(--teal),
 	5px 3px 0px var(--teal),

@@ -18,7 +18,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 .hero {
   background-color: var(--bg-main);
