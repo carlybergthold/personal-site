@@ -11,12 +11,19 @@
             <p>Electric scooters have revolutionized the way city dwellers get around, and more and more scooter companies are popping up to meet the demand. But why waste time opening up each company's app to locate your nearest ride?
             At Scoot Scout, we aren't brand loyal; we're scoot loyal. Simply open up the app, and you can see all the scooters near you. Yeah. Take that, Big Scooter.</p>
             <p class="mt-4 is-size-5 has-text-weight-bold">
-              <a href="https://youtu.be/BUvpbtT1OBQ" target="_blank">Watch the demo --></a>
+              <a href="https://youtu.be/BUvpbtT1OBQ" target="_blank" class="is-flex">Watch the demo
+                <b-icon
+                  pack="fas"
+                  icon="angle-double-right"
+                  size="is-medium"
+                  type="is-primary">
+                </b-icon>
+              </a>
             </p>
           </div>
           <div class="column">
-            <figure class="image">
-              <img src="@/assets/images/scoot-scout-tri.jpg">
+            <figure class="image is-flex is-justify-content-center">
+              <img src="@/assets/images/scoot-scout-tri.jpg" class="max-image">
             </figure>
           </div>
         </div>
@@ -52,13 +59,19 @@
             </div>
           </div>
           <div class="column is-one-third project-description">
-            <p class="headline title has-text-black">attributes of god</p>
+            <p class="headline title has-text-black">personal attributes</p>
             <p class="subtitle">client project (in progress)
               <br><span class="has-text-weight-light is-size-6">TECH: React.js, Bulma, Google Firebase</span>
             </p>
             <p>Discover your "spiritual personality" through quizzes, your interests, or your type from other popular personality frameworks like the Enneagram and Myers Briggs.</p>
             <p class="mt-4 is-size-5 has-text-weight-bold">
-              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="attribute-link">View on Github --></a>
+              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="attribute-link is-flex">View on Github
+                <b-icon
+                  pack="fas"
+                  icon="angle-double-right"
+                  size="is-medium">
+                </b-icon>
+              </a>
             </p>
           </div>
 
@@ -79,7 +92,7 @@
 .project-description {
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .attribute-link {
   color: black;
@@ -89,5 +102,8 @@
     flex-direction: column-reverse;
     display: flex;
   }
+}
+.max-image {
+  width: 750px;
 }
 </style>
