@@ -41,6 +41,7 @@
 <script>
 export default {
   name: 'HelloWorld',
+  title: 'Carly Bergthold - Home',
   props: {
     msg: String
   }

@@ -11,7 +11,9 @@ import "./styles/variables.css";
 import {MediaQueries, CommonBands} from 'vue-media-queries';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
+import titleMixin from './mixins/titleMixin';
 
+Vue.mixin(titleMixin);
 Vue.use(VueRouter);
 Vue.use(Buefy);
 const mediaQueries = new MediaQueries({

@@ -82,6 +82,13 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'Projects',
+  title: 'Carly Bergthold - Projects'
+}
+</script>
+
 <style scoped>
 .headline {
   text-shadow: 1px 1px 0px var(--orange),
