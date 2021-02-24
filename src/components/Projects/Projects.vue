@@ -22,7 +22,7 @@
             </p>
           </div>
           <div class="column">
-            <figure class="image is-flex is-justify-content-center">
+            <figure class="image is-flex is-justify-content-center display-on-safari">
               <img src="@/assets/images/scoot-scout-tri.jpg" class="max-image">
             </figure>
           </div>
@@ -112,7 +112,8 @@ export default {
 }
 .max-image {
   width: 750px;
-  display: flex;
+}
+.display-on-safari {
   align-items: flex-start;
 }
 </style>
