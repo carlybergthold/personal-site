@@ -112,5 +112,7 @@ export default {
 }
 .max-image {
   width: 750px;
+  display: flex;
+  align-items: flex-start;
 }
 </style>
