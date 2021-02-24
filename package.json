@@ -10,7 +10,9 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "buefy": "^0.9.4",
+    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.8.3",
+    "express": "^4.17.1",
     "vue": "^2.6.11",
     "vue-media-q": "0.0.5",
     "vue-media-queries": "0.0.5",
