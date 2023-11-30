@@ -31,7 +31,23 @@
     </section>
     <section class="hero is-fullheight-with-navbar has-background-primary">
       <div class="hero-body">
-        <div class="columns reverse-columns">
+        <div class="columns">
+            <div class="column is-one-third project-description">
+            <p class="headline title has-text-black">personal attributes</p>
+            <p class="subtitle">client project (in progress)
+              <br><span class="has-text-weight-light is-size-6">TECH: React.js, Bulma, Google Firebase</span>
+            </p>
+            <p>Discover your "spiritual personality" through quizzes, your interests, or your type from other popular personality frameworks like the Enneagram and Myers Briggs.</p>
+            <p class="mt-4 is-size-5 has-text-weight-bold">
+              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="attribute-link is-flex">View on Github
+                <b-icon
+                  pack="fas"
+                  icon="angle-double-right"
+                  size="is-medium">
+                </b-icon>
+              </a>
+            </p>
+          </div>
           <div class="column">
             <div class="tile is-ancestor">
               <div class="tile is-parent is-6">
@@ -58,23 +74,6 @@
               </div>
             </div>
           </div>
-          <div class="column is-one-third project-description">
-            <p class="headline title has-text-black">personal attributes</p>
-            <p class="subtitle">client project (in progress)
-              <br><span class="has-text-weight-light is-size-6">TECH: React.js, Bulma, Google Firebase</span>
-            </p>
-            <p>Discover your "spiritual personality" through quizzes, your interests, or your type from other popular personality frameworks like the Enneagram and Myers Briggs.</p>
-            <p class="mt-4 is-size-5 has-text-weight-bold">
-              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="attribute-link is-flex">View on Github
-                <b-icon
-                  pack="fas"
-                  icon="angle-double-right"
-                  size="is-medium">
-                </b-icon>
-              </a>
-            </p>
-          </div>
-
         </div>
 
       </div>
@@ -103,12 +102,6 @@ export default {
 }
 .attribute-link {
   color: black;
-}
-@media(max-width: 769px) {
-  .reverse-columns {
-    flex-direction: column-reverse;
-    display: flex;
-  }
 }
 .max-image {
   width: 750px;
