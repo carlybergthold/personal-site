@@ -93,19 +93,4 @@ export default {
   font-weight: 800;
   text-transform: uppercase;
 }
-.teal-text {
-  color: var(--teal);
-}
-.yellow-text {
-  color: var(--yellow);
-}
-.orange-text {
-  color: var(--orange);
-}
-.green-text {
-  color: var(--green);
-}
-.pink-text {
-  color: var(--pink);
-}
 </style>

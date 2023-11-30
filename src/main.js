@@ -5,6 +5,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 import Projects from "./components/Projects/Projects.vue";
 import About from "./components/About/About.vue";
 import Animation from "./components/Projects/Animation.vue";
+import Travels from "./components/Travels.vue";
 import Buefy from 'buefy';
 import "./styles/buefy.scss";
 import "./styles/variables.css";
@@ -27,7 +28,8 @@ const routes = [
   { path: '/home', component: HelloWorld },
   { path: '/projects', component: Projects },
   { path: '/about', component: About },
-  { path: '/animation', component: Animation }
+  { path: '/animation', component: Animation },
+  { path: '/travels', component: Travels }
 ]
 
 const router = new VueRouter({

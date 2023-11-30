@@ -6,3 +6,19 @@
   --green: #22c42a;
   --bg-main: #fafaeb;
 }
+
+.teal-text {
+  color: var(--teal);
+}
+.yellow-text {
+  color: var(--yellow);
+}
+.orange-text {
+  color: var(--orange);
+}
+.green-text {
+  color: var(--green);
+}
+.pink-text {
+  color: var(--pink);
+}
