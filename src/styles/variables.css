@@ -22,3 +22,19 @@
 .pink-text {
   color: var(--pink);
 }
+
+.teal-background {
+  background-color: var(--teal);
+}
+.yellow-background {
+  background-color: var(--yellow);
+}
+.orange-background {
+  background-color: var(--orange);
+}
+.green-background {
+  background-color: var(--green);
+}
+.pink-background {
+  background-color: var(--pink);
+}

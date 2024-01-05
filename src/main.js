@@ -6,6 +6,7 @@ import Projects from "./components/Projects/Projects.vue";
 import About from "./components/About/About.vue";
 import Animation from "./components/Projects/Animation.vue";
 import Travels from "./components/Travels.vue";
+import UhOh from "./components/UhOh.vue";
 import Buefy from 'buefy';
 import "./styles/buefy.scss";
 import "./styles/variables.css";
@@ -29,7 +30,8 @@ const routes = [
   { path: '/projects', component: Projects },
   { path: '/about', component: About },
   { path: '/animation', component: Animation },
-  { path: '/travels', component: Travels }
+  { path: '/travels', component: Travels },
+  { path: '/*', component: UhOh }
 ]
 
 const router = new VueRouter({
