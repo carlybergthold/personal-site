@@ -4,7 +4,7 @@
       <div class="container has-text-centered">
         <p class="headline title has-text-black">
           software engineer</p>
-        <p class="subtitle">+ travel fiend, amateur chef, & bright yellow bike rider</p>
+        <p class="subtitle">+ travel fiend, logophile, & local cat finder</p>
       </div>
     </div>
     <div class="hero-foot">
