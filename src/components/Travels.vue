@@ -3,7 +3,6 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
-        <div class="mb-4" >More info coming soon!</div>
         <div class="tabs-container has-text-weight-bold has-text-white"
           :class="$mq.above(640) ? 'tabs-container-desktop' : 'tabs-container-mobile'">
           <div @click='selectTab(1)' class="pink-background tab">{{ $mq.above(640) ? 'FLORIDA' : 'FL' }}
