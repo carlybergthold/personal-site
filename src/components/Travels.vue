@@ -17,6 +17,12 @@
           <div @click='selectTab(4)' class="orange-background tab">{{ $mq.above(640) ? 'ARIZONA' : 'AZ' }}
             <b-icon v-if="activeTab == 4" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
           </div>
+          <div @click='selectTab(5)' class="green-background tab">{{ $mq.above(640) ? 'CALIFORNIA' : 'CA' }}
+            <b-icon v-if="activeTab == 5" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
+          </div>
+          <div @click='selectTab(6)' class="pink-background tab">{{ $mq.above(640) ? 'OREGON' : 'OR' }}
+            <b-icon v-if="activeTab == 6" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
+          </div>
         </div>
         <div class="m-4" :class="getBorderStyle()">
           <div v-if="activeTab == 1" class="has-text-left ml-2 mr-2">
@@ -230,6 +236,22 @@
                 <div class="image-description">Our little adobe house near the Railyard</div> -->
               </div>
           </div>
+          <div v-if="activeTab == 5" class="has-text-left ml-2 mr-2">
+              <div class="location-container">
+                <div class="has-text-weight-bold has-text-centered">San Diego</div>
+                <div>May 21st - June 20th</div>
+                <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
+                <div class="image-description">Our little adobe house near the Railyard</div> -->
+              </div>
+          </div>
+          <div v-if="activeTab == 6" class="has-text-left ml-2 mr-2">
+              <div class="location-container">
+                <div class="has-text-weight-bold has-text-centered">Eugene</div>
+                <div>July 8th - Aug 10th</div>
+                <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
+                <div class="image-description">Our little adobe house near the Railyard</div> -->
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -246,7 +268,9 @@ export default {
           showPcbThoughts: false,
           showPcbVignettes: false,
           showNolaVignettes: false,
-          showSFVignettes: true
+          showSFVignettes: true,
+          showSanDiegoVignettes: false,
+          showEugeneVignettes: false
       };
   },
   methods: {
@@ -254,14 +278,16 @@ export default {
       this.activeTab = i;
     },
     getBorderStyle() {
-      if (this.activeTab === 1) {
+      if (this.activeTab === 1 || this.activeTab === 6) {
         return 'pink-border'
       } else if (this.activeTab === 2) {
         return 'yellow-border'
       } else if (this.activeTab === 3) {
         return 'teal-border'
-      } else {
+      } else if (this.activeTab === 4) {
         return 'orange-border'
+      } else if (this.activeTab === 5) {
+        return 'green-border'
       }
     }
   }
@@ -287,7 +313,7 @@ p {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  height: 2rem;
+  margin: 1rem 0;
 }
 .tabs-container-desktop {
   gap: 0.5rem;
@@ -295,19 +321,13 @@ p {
 }
 .tabs-container-mobile {
   width: 100%;
-  background-color: lightblue;
 }
 .tab {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-.tabs-container-desktop .tab {
-  width: 22%;
-}
-.tabs-container-mobile .tab {
-  width: 25%;
+  padding: 0.2rem 1rem;
 }
 .pink-border {
   border: 1px solid var(--pink);
@@ -323,6 +343,10 @@ p {
 }
 .orange-border {
   border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+.green-border {
+  border: 1px solid var(--green);
   border-radius: 10px;
 }
 .dropdown {
