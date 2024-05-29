@@ -235,6 +235,56 @@
                 <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
                 <div class="image-description">Our little adobe house near the Railyard</div> -->
               </div>
+             <div class="dropdown strikethrough" @click="showSedonaVignettes = !showSedonaVignettes">
+              Guest Post: Cameron
+              <b-icon pack="fas" :key="showSedonaVignettes" :icon="showSedonaVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="showSedonaVignettes">
+              <p>The majesty of Arizona's terrain becomes apparent all at once. From the Americana bygone of Route 66, our entry into the state started with a visit to the Meteor Crater, an impact zone burrowed into an otherwise placid desert landscape. Marching up stairs and through exhibits touting its magnificence, you arrive at the rim, windswept and wide. A vast bowl stares up from the earth. Your eyes quickly betray you - I mean, yeah it's cool, but it's just a hole in the ground, right?</p>
+              <p>Not so, dear traveler. As deep as a 60-story building and as wide as 20 football fields, this blip in the earth could comfortably sit around 2 million fans for what would undoubtedly be the greatest game ever played. The enormity begs for comparison, but none seem suitable. As you drive away, the brain struggles to accommodate what it saw.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sedona/vortex.jpeg" class="vertical-blog-image">
+                  <div class="image-description">The vortex at Bell Rock</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sedona/soldiers-pass.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Soldier's Pass cave</div>
+                </div>
+              </div>
+              <p>Our freshly piqued brains, then, could scarcely grasp the clay-hued cacophony that awaited. A winding mountain pass from the north or unremarkable roadways from the south deposit you into terra cotta topography unlike anything else. Etched through the eons as if erupting from the earth, Sedona's buttes, plateaus, slabs, and tableaus stand as if wonder and awe were captured in mineral form. Attracting those interested in the mystical - sacred pools! crystals! energy vortices! - as well as the magnificent and mountainous, the arid red slopes bring you closer to nature and more in tune with yourself. Hours spent hiking and running and sitting and staring filled us with an appreciation for how much the outside world changes you and shapes you, day by day and choice by choice.</p>
+              <p>Daily walks are interspersed with a standard occurrence: eyes straying too far upward are met with an uncontrollable arrest of the feet and an unconscious loosening of the lips. WOW.
+How grateful and lucky we felt to bask in the sun and the splendor.</p>
+              <p>And then, more. A visiting duo - Caleb and Allyson, you rock! - spurred a Pink Jeep excursion (will we trade in the Fit for a full offroad? time will tell…) and a chance to visit one of the world's marvels. Signs on the path of descent at the Grand Canyon show a scorched and stumbling man clinging to life, warning all but the most steel-legged to beware - 5000m down is bad enough, but back up? Pack a weekend bag. Elk wandered by and paused at the water fountains, hoping to quench their thirst in human style. Families huffed and puffed their way down and up from the aptly named Ooh Aah Point, determined to find a spot that will allow their minds to absorb and comprehend the miles of sprawling chasms below. We can only gaze, and wonder, and ponder, and hope.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sedona/devils-bridge.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Devil's Bridge</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sedona/gc-c-and-a.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Caleb and Allyson at the Grand Canyon</div>
+                </div>
+              </div>
+              <p>As we headed south for the last time, our eyes traced the red rims and they faded into the rearview mirror. We'll visit again, one day. The red clay is still stuck to our shoes and seeped into our souls.</p>
+            </div>
+            <div class="dropdown strikethrough" @click="showJoshuaTree = !showJoshuaTree">
+              Bonus: Joshua Tree
+              <b-icon pack="fas" :key="showJoshuaTree" :icon="showJoshuaTree ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="showJoshuaTree">
+              <p>We detoured to 29 Palms, CA on our way from Sedona to San Diego, where we stayed in a breathtaking AirBnB reached only by a painfully bumpy dirt road. Worth it! We hung out, stared at the stars from the hot tub, and hit up Joshua Tree National Park. There Cameron declared he "didn't know he loved climbing on big rocks so much," while I (Carly) absolutely did know this, but didn't rub it in too much.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sedona/joshua-tree-chula.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Joshua Tree Cholla Garden</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sedona/joshua-tree-rocks.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Joshua Tree boulders</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div v-if="activeTab == 5" class="has-text-left ml-2 mr-2">
               <div class="location-container">
@@ -264,11 +314,13 @@ export default {
   title: 'Carly Bergthold - Travels',
   data() {
       return {
-          activeTab: 3,
+          activeTab: 4,
           showPcbThoughts: false,
           showPcbVignettes: false,
           showNolaVignettes: false,
-          showSFVignettes: true,
+          showSFVignettes: false,
+          showSedonaVignettes: true,
+          showJoshuaTree: false,
           showSanDiegoVignettes: false,
           showEugeneVignettes: false
       };
