@@ -293,6 +293,63 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
                 <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
                 <div class="image-description">Our little adobe house near the Railyard</div> -->
               </div>
+              <div class="dropdown strikethrough" @click="showSanDiegoVignettes = !showSanDiegoVignettes">
+              Highlights
+              <b-icon pack="fas" :key="showSanDiegoVignettes" :icon="showSanDiegoVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="showSanDiegoVignettes">
+              <p>There's a saying in Sedona that goes, “God made the whole world, but he lives in Sedona.” If that's true, then he absolutely has a vacation home in San Diego!</p>
+              <p>Our little apartment, nestled just above Balboa Park,  was surrounded by wide sidewalks with bright pink and purple flowers. We could (and did!) easily walk or bike to restaurants, breweries, and museums - soaking up as much of the SoCal weather as possible. </p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sandiego/balboa-park.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Balboa Park</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sandiego/catalina.jpeg" class="vertical-blog-image">
+                  <div class="image-description">The view from Coronado Island</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sandiego/torrey-pines.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Torrey Pines State Park</div>
+                </div>
+              </div>
+              <p>We forsook our new home briefly to spend Memorial Day weekend in San Clemente, a sleepy beach town just north of San Diego. Although a bit chilly for swimming, we watched the surfers from the pier and basked in the late May sunshine from the safety of the shore.</p>
+              <p>Don't fret though, my Melvillian friends, because our feet didn't stay on the sand forever! We ventured out on a whale watching tour from Dana Point, where amid the copious schools of dolphins, we saw three fin whales diving and spouting (and a solid quarter of our brethren grew seasick from the choppy water).</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sandiego/san-clemente.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Surfers in San Clemente</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sandiego/whale-sea-lions.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Sea Lions near Dana Point</div>
+                </div>
+              </div>
+              <p>Back in San Diego, we spent our time hiking, sea kayaking, and listening to the sea lions bark. We made it to some concerts, comedy shows, and even a Padres game with a dramatic win after being tied in the bottom of the ninth. You couldn't keep us away from the beach, either, although the June Gloom kept us from actually getting in the ocean for the most part.</p>
+               <div class="image-container">
+              <div>
+                  <img src="@/assets/images/sandiego/kayak-guide.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Kayaking in La Jolla</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sandiego/kayak-us.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Kayaking in La Jolla</div>
+                </div>
+              </div>
+              <p>The one time we did go in was after donning wetsuits for a surfing lesson - and we used so much physical exertion that I didn't feel the chill! I have infinite respect for surfers now after trying my hand at it. Merely wrangling my surfboard through the ornery waves tired me out - but it was worth it for the few waves I was able to catch and ride all the way in. We were absolutely exhausted afterward, but some sun and beer fixed us right up.</p>
+              <p>In the eternal words of Ron Burgundy: stay classy, San Diego. We'll be back!</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/sandiego/friendship-garden-cat.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Cat friend in the Japanese Friendship Garden - Balboa Park</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/sandiego/neighbor-cat.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Cat friend in neighbor's window</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div v-if="activeTab == 6" class="has-text-left ml-2 mr-2">
               <div class="location-container">
@@ -314,14 +371,14 @@ export default {
   title: 'Carly Bergthold - Travels',
   data() {
       return {
-          activeTab: 4,
+          activeTab: 5,
           showPcbThoughts: false,
           showPcbVignettes: false,
           showNolaVignettes: false,
           showSFVignettes: false,
-          showSedonaVignettes: true,
+          showSedonaVignettes: false,
           showJoshuaTree: false,
-          showSanDiegoVignettes: false,
+          showSanDiegoVignettes: true,
           showEugeneVignettes: false
       };
   },
