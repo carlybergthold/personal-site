@@ -5,38 +5,29 @@
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
         <div class="tabs-container has-text-weight-bold has-text-white"
           :class="$mq.above(640) ? 'tabs-container-desktop' : 'tabs-container-mobile'">
-          <div @click='selectTab(1)' class="pink-background tab">{{ $mq.above(640) ? 'FLORIDA' : 'FL' }}
-            <b-icon v-if="activeTab == 1" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
-          </div>
-          <div @click='selectTab(2)' class="yellow-background tab">{{ $mq.above(640) ? 'LOUISIANA' : 'LA' }}
-            <b-icon v-if="activeTab == 2" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
-          </div>
-          <div @click='selectTab(3)' class="teal-background tab">{{ $mq.above(640) ? 'NEW MEXICO' : 'NM' }}
-            <b-icon v-if="activeTab == 3" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
-          </div>
-          <div @click='selectTab(4)' class="orange-background tab">{{ $mq.above(640) ? 'ARIZONA' : 'AZ' }}
-            <b-icon v-if="activeTab == 4" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
-          </div>
-          <div @click='selectTab(5)' class="green-background tab">{{ $mq.above(640) ? 'CALIFORNIA' : 'CA' }}
-            <b-icon v-if="activeTab == 5" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
-          </div>
-          <div @click='selectTab(6)' class="pink-background tab">{{ $mq.above(640) ? 'OREGON' : 'OR' }}
-            <b-icon v-if="activeTab == 6" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
+          <div v-for="tab in tabs"
+            :key="tab.id"
+            @click="selectTab(tab.id)"
+            class="tab"
+            :class="tab.class"
+          >
+            {{ $mq.above(640) ? tab.title : tab.mobileTitle }}
+            <b-icon v-if="tab.isActive" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
           </div>
         </div>
         <div class="m-4" :class="getBorderStyle()">
-          <div v-if="activeTab == 1" class="has-text-left ml-2 mr-2">
-            <div class="location-container">
-              <div class="has-text-weight-bold has-text-centered">Panama City Beach</div>
-              <div class="has-text-centered">January 1st - February 1st</div>
-              <img src="@/assets/images/pcb/florida-condo.jpeg" class="vertical-blog-image">
-              <div class="image-description">Our little condo a quarter mile from the beach</div>
-            </div>
-            <div class="dropdown strikethrough" @click="showPcbVignettes = !showPcbVignettes">
+          <div v-if="showTabContent(1)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
-              <b-icon pack="fas" :key="showPcbVignettes" :icon="showPcbVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
             </div>
-            <div v-if="showPcbVignettes">
+            <div v-if="getActiveTab().showHighlights">
               <div><b>Lunch break beach walks</b></div>
               <p>As long as it wasn't raining, freezing, or blustery (hello windburn!), we made the trek to the beach every work day after lunch. This early in the year, the water is too cold to get in, but you can join the retirees dotting the shore in shell hunting, staring into the roiling sea, and, of course, giving "The Nod and Wave" when you pass by.</p>
               <div class="image-container">
@@ -95,18 +86,18 @@
               <p>Musings come easily in the off season.</p>
             </div>
           </div>
-          <div v-if="activeTab == 2" class="has-text-left ml-2 mr-2">
-            <div class="location-container">
-              <div class="has-text-weight-bold has-text-centered">New Orleans</div>
-              <div class="has-text-centered">February 1st - March 2nd</div>
-              <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
-              <div class="image-description">We stayed on the top floor of this townhouse</div>
-            </div>
-            <div class="dropdown strikethrough" @click="showNolaVignettes = !showNolaVignettes">
+          <div v-if="showTabContent(2)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
-              <b-icon pack="fas" :key="showNolaVignettes" :icon="showNolaVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
             </div>
-            <div v-if="showNolaVignettes">
+            <div v-if="getActiveTab().showHighlights">
               <div><b>Mardi Gras</b></div>
               <p>Mardi Gras is much more than just Fat Tuesday! This city partied for a solid two+ weeks, and we got in on as much as possible. I do not typically like parades. I could (and did!) watch Mardi Gras parades daily, for hours. Just grab a street beer, watch the festivities, and vibe. An unofficial slogan/song of Mardi Gras is “Do whatcha wanna,” and we complied. As if all this wasn't fun enough, our friends Brittany and Tyler came down for the weekend, which really put Mardi Gras over the top!</p>
               <div class="image-container">
@@ -164,19 +155,28 @@
               <p>A mystery illness knocked us both out for nearly two weeks, so I had to give an honorable mention to our newly acquired Steam Deck. As an absolute video game newbie, I used my down time to graduate from only being able to look at the ground/sky to being able to run around and shoot bad guys. Until they shoot me. Or I fall off a mountain.</p>
               <p>Favorite games so far: Binding of Isaac: Rebirth, Borderlands 3, Unravel Two</p>
             </div>
-          </div>
-          <div v-if="activeTab == 3" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Santa Fe</div>
-                <div class="has-text-centered">March 10th - April 13th</div>
-                <img src="@/assets/images/santafe/airbnb.jpeg" class="horizontal-blog-image">
-                <div class="image-description">Our little adobe house near the Railyard</div>
-              </div>
-            <div class="dropdown strikethrough" @click="showSFVignettes = !showSFVignettes">
-              Highlights
-              <b-icon pack="fas" :key="showSFVignettes" :icon="showSFVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            <div class="dropdown strikethrough" @click="showHouston = !showHouston">
+              Bonus: Houston
+              <b-icon pack="fas" :key="showHouston" :icon="showHouston ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
             </div>
-            <div v-if="showSFVignettes">
+            <div v-if="showHouston">
+              <p>As we wound our way west beyond New Orleans, the marshes and bayous (and attendant scaly creatures) faded into the Texas coast. In Houston, we were greeted by warm and familiar faces: our human homies Dakota and Nycole and canine bestie Yuma.</p>
+              <p>We spent a blissful week enjoying camaraderie with a little country flavor, including our introduction to the Houston Rodeo with its broncos, bulls, big-and-fried foodstuffs, and much more (10/10 would recommend, next time we are placing bets on the mutton bustin').</p>
+              <p>Our time with N + D included competitive sets of Mario Party, our first foray into pickleball (we need some practice…), and shared work from home collaboration. As the expanse of Texas disappeared in the rearview mirror, we were grateful for Texas-sized friendship (not to mention Texas-sized and Texas-fried Twinkies).</p>
+            </div>
+          </div>
+          <div v-if="showTabContent(3)" class="has-text-left ml-2 mr-2">
+             <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
+              Highlights
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="getActiveTab().showHighlights">
               <div><b>Hiking</b></div>
               <p>My number one goal in Santa Fe was to be on a mountain as much as possible, and we more than accomplished that! There are excellent trails right in Santa Fe as well as easy day trips.</p>
               <p>At Bandelier National Monument, you can climb ladders to visit the ancient homes of Ancestral Puebloans, which are carved into the rockface. Some of the taller ladders are honestly terrifying, but I had to climb them after seeing some 7-year-olds coming down.</p>
@@ -228,18 +228,16 @@
               <p>An enigma. All I can say is, if you ever find yourself in Santa Fe, this is a must see!</p>
             </div>
           </div>
-          <div v-if="activeTab == 4" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Sedona</div>
-                <div>April 16th - May 18th</div>
-                <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
-                <div class="image-description">Our little adobe house near the Railyard</div> -->
-              </div>
-             <div class="dropdown strikethrough" @click="showSedonaVignettes = !showSedonaVignettes">
+          <div v-if="showTabContent(4)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+            ></location-container>
+             <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Guest Post: Cameron
-              <b-icon pack="fas" :key="showSedonaVignettes" :icon="showSedonaVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
             </div>
-            <div v-if="showSedonaVignettes">
+            <div v-if="getActiveTab().showHighlights">
               <p>The majesty of Arizona's terrain becomes apparent all at once. From the Americana bygone of Route 66, our entry into the state started with a visit to the Meteor Crater, an impact zone burrowed into an otherwise placid desert landscape. Marching up stairs and through exhibits touting its magnificence, you arrive at the rim, windswept and wide. A vast bowl stares up from the earth. Your eyes quickly betray you - I mean, yeah it's cool, but it's just a hole in the ground, right?</p>
               <p>Not so, dear traveler. As deep as a 60-story building and as wide as 20 football fields, this blip in the earth could comfortably sit around 2 million fans for what would undoubtedly be the greatest game ever played. The enormity begs for comparison, but none seem suitable. As you drive away, the brain struggles to accommodate what it saw.</p>
               <div class="image-container">
@@ -286,18 +284,16 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
               </div>
             </div>
           </div>
-          <div v-if="activeTab == 5" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">San Diego</div>
-                <div>May 21st - June 20th</div>
-                <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
-                <div class="image-description">Our little adobe house near the Railyard</div> -->
-              </div>
-              <div class="dropdown strikethrough" @click="showSanDiegoVignettes = !showSanDiegoVignettes">
+          <div v-if="showTabContent(5)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+            ></location-container>
+              <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
-              <b-icon pack="fas" :key="showSanDiegoVignettes" :icon="showSanDiegoVignettes ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
             </div>
-            <div v-if="showSanDiegoVignettes">
+            <div v-if="getActiveTab().showHighlights">
               <p>There's a saying in Sedona that goes, “God made the whole world, but he lives in Sedona.” If that's true, then he absolutely has a vacation home in San Diego!</p>
               <p>Our little apartment, nestled just above Balboa Park,  was surrounded by wide sidewalks with bright pink and purple flowers. We could (and did!) easily walk or bike to restaurants, breweries, and museums - soaking up as much of the SoCal weather as possible. </p>
               <div class="image-container">
@@ -350,14 +346,34 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
                 </div>
               </div>
             </div>
+            <div class="dropdown strikethrough" @click="showNashville = !showNashville">
+              Bonus: Nashville
+              <b-icon pack="fas" :key="showNashville" :icon="showNashville ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="showNashville">
+              <p>While a return to Nashville is usually accompanied by a sweltering blast of air as you leave the airport, we were escaping 110 degree weather from our flight out of Sacramento (thanks, heat wave…) so we gladly took the trade and were even more glad to see many of the people we treasure most. Coffees, cookouts, and catching up consumed our two-week return and only scratched the surface of how much we loved spending time with friends and family. Cameron's birthday was rainy, but we took the inevitable drive around town to see what had changed and visit some of our favorite haunts, with a post-birthday favorite-band concert the next night. Family lunches and brunches brought us back into the warm embraces of our loved ones, and we had some treasured quality time with our friends over dinner, drinks, and disc golf (is 40 over par a new “high” score? - Cameron asks for a friend…). Gwyn and Ron were lovely hosts (such cooking!) and we even managed to score a fancy gated-community pool jaunt for America's birthday (Zach for the win!). As we boarded our flight back across the country, we were both exhausted and energized, but mostly grateful for the family and community that loves us and that we love right back.</p>
+            </div>
           </div>
-          <div v-if="activeTab == 6" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Eugene</div>
-                <div>July 8th - Aug 10th</div>
-                <!-- <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
-                <div class="image-description">Our little adobe house near the Railyard</div> -->
-              </div>
+          <div v-if="showTabContent(6)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
+          </div>
+          <div v-if="showTabContent(7)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
+          </div>
+          <div v-if="showTabContent(8)" class="has-text-left ml-2 mr-2">
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
           </div>
         </div>
       </div>
@@ -366,38 +382,152 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
 </template>
 
 <script>
+import LocationContainer from './LocationContainer.vue'
 export default {
-  name: 'Travels',
+  components: {
+    LocationContainer
+  },
+  name: 'OurTravels',
   title: 'Carly Bergthold - Travels',
   data() {
       return {
-          activeTab: 5,
           showPcbThoughts: false,
-          showPcbVignettes: false,
-          showNolaVignettes: false,
-          showSFVignettes: false,
-          showSedonaVignettes: false,
           showJoshuaTree: false,
-          showSanDiegoVignettes: true,
-          showEugeneVignettes: false
+          showNashville: false,
+          showHouston: false,
+          tabs: [
+            {
+              id: 1,
+              isActive: false,
+              class: 'pink-background',
+              borderClass: 'pink-border',
+              title: 'FLORIDA',
+              mobileTitle: 'FL',
+              showHighlights: false,
+              locationContainer: {
+                title: "Panama City Beach", 
+                dates: "Jan. 1st - Feb. 1st", 
+                imageFile: "pcb/florida-condo.jpeg", 
+                imageDescription: "Our little condo a quarter mile from the beach"
+              }
+            },
+            {
+              id: 2,
+              isActive: false,
+              class: 'yellow-background',
+              borderClass: 'yellow-border',
+              title: 'LOUISIANA',
+              mobileTitle: 'LA',
+              showHighlights: false,
+              locationContainer: {
+                title: "New Orleans", 
+                dates: "Feb. 1st - March 2nd", 
+                imageFile: "nola/airbnb.jpeg", 
+                imageDescription: "We stayed on the top floor of this townhouse"
+              }
+            },
+            {
+              id: 3,
+              isActive: false,
+              class: 'teal-background',
+              borderClass: 'teal-border',
+              title: 'NEW MEXICO',
+              mobileTitle: 'NM',
+              showHighlights: false,
+              locationContainer: {
+                title: "Santa Fe", 
+                dates: "March 10th - April 13th", 
+                imageFile: "santafe/airbnb.jpeg", 
+                imageDescription: "Our little adobe house near the Railyard"
+              }
+            },
+            {
+              id: 4,
+              isActive: false,
+              class: 'orange-background',
+              borderClass: 'orange-border',
+              title: 'ARIZONA',
+              mobileTitle: 'AZ',
+              showHighlights: false,
+              locationContainer: {
+                title: "Sedona", 
+                dates: "April 16th - May 18th"
+              }
+            },
+            {
+              id: 5,
+              isActive: true,
+              class: 'green-background',
+              borderClass: 'green-border',
+              title: 'CALIFORNIA',
+              mobileTitle: 'CA',
+              showHighlights: true,
+              locationContainer: {
+                title: "San Diego", 
+                dates: "May 21st - June 20th"
+              }
+            },
+            {
+              id: 6,
+              isActive: false,
+              class: 'pink-background',
+              borderClass: 'pink-border',
+              title: 'OREGON',
+              mobileTitle: 'OR',
+              showHighlights: false,
+              locationContainer: {
+                title: "Eugene", 
+                dates: "July 8th - Aug 10th"
+              }
+            },
+            {
+              id: 7,
+              isActive: false,
+              class: 'yellow-background',
+              borderClass: 'yellow-border',
+              title: 'IDAHO',
+              mobileTitle: 'ID',
+              showHighlights: false,
+              locationContainer: {
+                title: "Boise", 
+                dates: "Aug 10th - 23rd"
+              }
+            },
+            {
+              id: 8,
+              isActive: false,
+              class: 'teal-background',
+              borderClass: 'teal-border',
+              title: 'COLORADO',
+              mobileTitle: 'CO',
+              showHighlights: false,
+              locationContainer: {
+                title: "Denver", 
+                dates: "Sept 13th - Nov 16th"
+              }
+            }
+          ]
       };
   },
   methods: {
-    selectTab(i) {
-      this.activeTab = i;
+    selectTab(id) {
+      this.tabs.forEach(x => x.isActive = false);
+      this.getTabById(id).isActive = true;
     },
     getBorderStyle() {
-      if (this.activeTab === 1 || this.activeTab === 6) {
-        return 'pink-border'
-      } else if (this.activeTab === 2) {
-        return 'yellow-border'
-      } else if (this.activeTab === 3) {
-        return 'teal-border'
-      } else if (this.activeTab === 4) {
-        return 'orange-border'
-      } else if (this.activeTab === 5) {
-        return 'green-border'
-      }
+      return this.getActiveTab().borderClass;
+    },
+    showTabContent(id) {
+      return this.getTabById(id).isActive;
+    },
+    getTabById(id) {
+      return this.tabs.find(x => x.id === id);
+    },
+    getActiveTab() {
+      return this.tabs.find(x => x.isActive);
+    },    
+    showHighlights() {
+      return this.getActiveTab().showHighlights;
     }
   }
 }
