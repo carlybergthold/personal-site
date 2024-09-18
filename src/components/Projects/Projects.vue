@@ -83,7 +83,7 @@
 
 <script>
 export default {
-  name: 'Projects',
+  name: 'MyProjects',
   title: 'Carly Bergthold - Projects'
 }
 </script>

@@ -6,6 +6,13 @@
   </section>
 </template>
 
+<script>
+export default {
+  name: 'AnimationFun',
+  title: 'Carly Bergthold - Animation'
+}
+</script>
+
 <style scoped>
 .headline {
   color: white;

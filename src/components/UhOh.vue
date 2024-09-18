@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: '404 Page',
+  name: '404Page',
   title: 'Carly Bergthold - Lost Your Way?'
 }
 </script>
