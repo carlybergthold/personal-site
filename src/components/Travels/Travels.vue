@@ -17,13 +17,12 @@
         </div>
         <div class="m-4" :class="getBorderStyle()">
           <div v-if="showTabContent(1)" class="has-text-left ml-2 mr-2">
-            <location-container title="hello!"></location-container>
-            <div class="location-container">
-              <div class="has-text-weight-bold has-text-centered">Panama City Beach</div>
-              <div class="has-text-centered">January 1st - February 1st</div>
-              <img src="@/assets/images/pcb/florida-condo.jpeg" class="vertical-blog-image">
-              <div class="image-description">Our little condo a quarter mile from the beach</div>
-            </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
             <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
               <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
@@ -88,12 +87,12 @@
             </div>
           </div>
           <div v-if="showTabContent(2)" class="has-text-left ml-2 mr-2">
-            <div class="location-container">
-              <div class="has-text-weight-bold has-text-centered">New Orleans</div>
-              <div class="has-text-centered">February 1st - March 2nd</div>
-              <img src="@/assets/images/nola/airbnb.jpeg" class="vertical-blog-image">
-              <div class="image-description">We stayed on the top floor of this townhouse</div>
-            </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
             <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
               <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
@@ -167,12 +166,12 @@
             </div>
           </div>
           <div v-if="showTabContent(3)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Santa Fe</div>
-                <div class="has-text-centered">March 10th - April 13th</div>
-                <img src="@/assets/images/santafe/airbnb.jpeg" class="horizontal-blog-image">
-                <div class="image-description">Our little adobe house near the Railyard</div>
-              </div>
+             <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+              :imageFile="getActiveTab().locationContainer.imageFile" 
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
+            ></location-container>
             <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
               <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
@@ -230,10 +229,10 @@
             </div>
           </div>
           <div v-if="showTabContent(4)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Sedona</div>
-                <div>April 16th - May 18th</div>
-              </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+            ></location-container>
              <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Guest Post: Cameron
               <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
@@ -286,10 +285,10 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
             </div>
           </div>
           <div v-if="showTabContent(5)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">San Diego</div>
-                <div>May 21st - June 20th</div>
-              </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates" 
+            ></location-container>
               <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">
               Highlights
               <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
@@ -356,26 +355,25 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
             </div>
           </div>
           <div v-if="showTabContent(6)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Eugene</div>
-                <div>July 8th - Aug 10th</div>
-                <div>Coming soon!</div>
-                <div class="image-description">Our little adobe house near the Railyard</div> -->
-              </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
           </div>
           <div v-if="showTabContent(7)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Boise</div>
-                <div>Aug 10th - 23rd</div>
-                <div>Coming soon!</div>
-              </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
           </div>
           <div v-if="showTabContent(8)" class="has-text-left ml-2 mr-2">
-              <div class="location-container">
-                <div class="has-text-weight-bold has-text-centered">Denver</div>
-                <div>Sept 13th - Nov 16th</div>
-                <div>Coming soon!</div>
-              </div>
+            <location-container 
+              :title="getActiveTab().locationContainer.title" 
+              :dates="getActiveTab().locationContainer.dates"
+              :comingSoon="true"
+            ></location-container>
           </div>
         </div>
       </div>
@@ -384,12 +382,12 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
 </template>
 
 <script>
-import LocationContainer from './LocationContainer.js'
+import LocationContainer from './LocationContainer.vue'
 export default {
   components: {
     LocationContainer
   },
-  name: 'Our Travels',
+  name: 'OurTravels',
   title: 'Carly Bergthold - Travels',
   data() {
       return {
@@ -405,7 +403,13 @@ export default {
               borderClass: 'pink-border',
               title: 'FLORIDA',
               mobileTitle: 'FL',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Panama City Beach", 
+                dates: "Jan. 1st - Feb. 1st", 
+                imageFile: "pcb/florida-condo.jpeg", 
+                imageDescription: "Our little condo a quarter mile from the beach"
+              }
             },
             {
               id: 2,
@@ -414,7 +418,13 @@ export default {
               borderClass: 'yellow-border',
               title: 'LOUISIANA',
               mobileTitle: 'LA',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "New Orleans", 
+                dates: "Feb. 1st - March 2nd", 
+                imageFile: "nola/airbnb.jpeg", 
+                imageDescription: "We stayed on the top floor of this townhouse"
+              }
             },
             {
               id: 3,
@@ -423,7 +433,13 @@ export default {
               borderClass: 'teal-border',
               title: 'NEW MEXICO',
               mobileTitle: 'NM',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Santa Fe", 
+                dates: "March 10th - April 13th", 
+                imageFile: "santafe/airbnb.jpeg", 
+                imageDescription: "Our little adobe house near the Railyard"
+              }
             },
             {
               id: 4,
@@ -432,7 +448,11 @@ export default {
               borderClass: 'orange-border',
               title: 'ARIZONA',
               mobileTitle: 'AZ',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Sedona", 
+                dates: "April 16th - May 18th"
+              }
             },
             {
               id: 5,
@@ -441,7 +461,11 @@ export default {
               borderClass: 'green-border',
               title: 'CALIFORNIA',
               mobileTitle: 'CA',
-              showHighlights: true
+              showHighlights: true,
+              locationContainer: {
+                title: "San Diego", 
+                dates: "May 21st - June 20th"
+              }
             },
             {
               id: 6,
@@ -450,7 +474,11 @@ export default {
               borderClass: 'pink-border',
               title: 'OREGON',
               mobileTitle: 'OR',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Eugene", 
+                dates: "July 8th - Aug 10th"
+              }
             },
             {
               id: 7,
@@ -459,7 +487,11 @@ export default {
               borderClass: 'yellow-border',
               title: 'IDAHO',
               mobileTitle: 'ID',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Boise", 
+                dates: "Aug 10th - 23rd"
+              }
             },
             {
               id: 8,
@@ -468,7 +500,11 @@ export default {
               borderClass: 'teal-border',
               title: 'COLORADO',
               mobileTitle: 'CO',
-              showHighlights: false
+              showHighlights: false,
+              locationContainer: {
+                title: "Denver", 
+                dates: "Sept 13th - Nov 16th"
+              }
             }
           ]
       };

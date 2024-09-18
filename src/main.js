@@ -1,11 +1,11 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.esm.js';
 import App from "./App.vue";
 import VueRouter from 'vue-router';
 import HelloWorld from "./components/HelloWorld.vue";
 import Projects from "./components/Projects/Projects.vue";
 import About from "./components/About/About.vue";
 import Animation from "./components/Projects/Animation.vue";
-import Travels from "./components/Travels.vue";
+import Travels from "./components/Travels/Travels.vue";
 import UhOh from "./components/UhOh.vue";
 import Buefy from 'buefy';
 import "./styles/buefy.scss";
