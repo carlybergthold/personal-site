@@ -358,8 +358,53 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
             <location-container 
               :title="getActiveTab().locationContainer.title" 
               :dates="getActiveTab().locationContainer.dates"
-              :comingSoon="true"
+              :imageFile="getActiveTab().locationContainer.imageFile"
+              :imageDescription="getActiveTab().locationContainer.imageDescription"
             ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">Highlights
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="getActiveTab().showHighlights">
+              <p>We set out for Oregon with zero expectations, happy and exhausted from our time in Nashville with friends and family. Our house for the month was north of town, mere blocks from the bike path that snakes along the cold, clear river. Little did we know how much time we would spend walking, running, and biking that path!</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/oregon/river.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Carly modeling bike safety on the river bridge</div>
+                </div>
+              </div>
+              <p>As bike-loving Southerners, we're used to bike lanes ending with no warning, trucks swerving dangerously close, and reactions of general shock when arriving to an event with a helmet. In Eugene, it's common to commute to work on a bicycle, and we experienced our first bike "traffic jam" from the myriad of people utilizing the path.</p>
+              <p>The city itself is small and quiet, so we were happy to spend our time by the water enjoying mild summer evenings (and when we were lucky, the family of beavers who lived in the nature reserve nearby!).</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/oregon/beavers.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Mom and baby</div>
+                </div>               
+                <div>
+                  <img src="@/assets/images/oregon/turkeys.jpeg" class="vertical-blog-image">
+                  <div class="image-description">We also befriended a pack of turkeys in the neighborhood</div>
+                </div>
+              </div>
+              <p>When we tore ourselves away from the river, we ventured west to the Oregon Coast. Even when it was 90 degrees in Eugene, the coast could be in the 50's, overcast and windy, but the lack of sun only enhances the moody, lush forests and coastline.</p>
+              <p>We hiked, visited a lighthouse, greeted the sea lions, clambered over rocks, and huddled on the beach in sweaters. It was truly magical - so fantastical, in fact, that there's a path to the Pacific (or Middle Earth?) called the Hobbit Trail.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/oregon/coast.jpeg" class="vertical-blog-image">
+                </div>
+                <div>
+                  <img src="@/assets/images/oregon/coast-beach.jpeg" class="vertical-blog-image">
+                </div>                
+                <div>
+                  <img src="@/assets/images/oregon/coast-forest.jpeg" class="vertical-blog-image">
+                </div>
+              </div>
+              <p>We wrapped up Oregon with a trip to Crater Lake National Park, where they say the water is the bluest blue you can find in nature. Although it was a bit smoggy from wildfire smoke, the park is absolutely gorgeous.</p>
+              <div class="image-container">
+              <div>
+                  <img src="@/assets/images/oregon/crater-lake.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">The "Pirate Ship" at Crater Lake</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div v-if="showTabContent(7)" class="has-text-left ml-2 mr-2">
             <location-container 
@@ -456,7 +501,7 @@ export default {
             },
             {
               id: 5,
-              isActive: true,
+              isActive: false,
               class: 'green-background',
               borderClass: 'green-border',
               title: 'CALIFORNIA',
@@ -469,7 +514,7 @@ export default {
             },
             {
               id: 6,
-              isActive: false,
+              isActive: true,
               class: 'pink-background',
               borderClass: 'pink-border',
               title: 'OREGON',
@@ -477,7 +522,9 @@ export default {
               showHighlights: false,
               locationContainer: {
                 title: "Eugene", 
-                dates: "July 8th - Aug 10th"
+                dates: "July 8th - Aug 10th",
+                imageFile: "oregon/house.jpeg",
+                imageDescription: "Our quiet house on the corner"
               }
             },
             {
