@@ -506,7 +506,7 @@ export default {
               borderClass: 'green-border',
               title: 'CALIFORNIA',
               mobileTitle: 'CA',
-              showHighlights: true,
+              showHighlights: false,
               locationContainer: {
                 title: "San Diego", 
                 dates: "May 21st - June 20th"
