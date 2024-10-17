@@ -2,6 +2,20 @@
   <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
       <div class="container has-text-centered">
+
+        <div class="best-of-container">
+          <div class="best-of-locations">
+            <div v-for="location in allLocations" :key="location.name" class="best-of-location">
+              <div class="upper-icon">xxx</div>
+              <div class="small-left-aligned-text">{{location.type === 1 ? 'Restaurant' : 'Brewery'}}</div>
+              <div class="best-of-title">{{location.name}}</div>
+              <div class="small-left-aligned-text">{{location.description}}</div>
+            </div>
+          </div>
+          <Map :allLocations="allLocations"></Map>
+        </div>
+
+
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
         <div class="tabs-container has-text-weight-bold has-text-white"
           :class="$mq.above(640) ? 'tabs-container-desktop' : 'tabs-container-mobile'">
@@ -428,9 +442,12 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
 
 <script>
 import LocationContainer from './LocationContainer.vue'
+import Map from './Map.vue'
+
 export default {
   components: {
-    LocationContainer
+    LocationContainer,
+    Map
   },
   name: 'OurTravels',
   title: 'Carly Bergthold - Travels',
@@ -553,7 +570,40 @@ export default {
                 dates: "Sept 13th - Nov 16th"
               }
             }
-          ]
+          ],
+          allLocations: [
+          { name: "Perfect Pig", description: "A great spot in PCB", latitude: 30.2747, longitude: -87.5944, type: 1 },
+          { name: "Third Planet Brewing", description: "Craft beer in PCB", latitude: 30.3935, longitude: -86.4982, type: 2 },
+          { name: "Lotus Cafe", description: "Healthy eats in PCB", latitude: 30.1790, longitude: -85.8038, type: 1 },
+          { name: "Noma???", description: "Maybe Noma restaurant", latitude: 29.9511, longitude: -90.0715, type: 1 },
+          { name: "Addis", description: "Possibly an Ethiopian restaurant in New Orleans", latitude: 29.9531, longitude: -90.0684, type: 1 },
+          { name: "Sukho Thai", description: "Thai food in New Orleans", latitude: 29.9657, longitude: -90.0537, type: 1 },
+          { name: "Broken Mouth", description: "Great food in LA", latitude: 34.0451, longitude: -118.2475, type: 1 },
+          { name: "Paper Dosa", description: "Santa Fe delights", latitude: 35.6762, longitude: -105.9414, type: 1 },
+          { name: "El Comal", description: "Authentic Mexican food in Santa Fe", latitude: 35.6663, longitude: -105.9750, type: 1 },
+          { name: "Jambo Cafe", description: "East African-Caribbean fusion in Santa Fe", latitude: 35.6707, longitude: -105.9891, type: 1 },
+          { name: "Izanami", description: "Japanese food in Santa Fe", latitude: 35.7594, longitude: -105.8634, type: 1 },
+          { name: "Tune Up Cafe", description: "Cozy cafe in Santa Fe", latitude: 35.6814, longitude: -105.9547, type: 1 },
+          { name: "Arizona Sake", description: "Sake brewery in Arizona", latitude: 34.2603, longitude: -110.0306, type: 2 },
+          { name: "Dark Sky", description: "Brewery in Flagstaff", latitude: 35.1983, longitude: -111.6513, type: 2 },
+          { name: "Mole", description: "Possible Mexican restaurant in Phoenix", latitude: 33.4484, longitude: -112.0740, type: 1 },
+          { name: "Thai place in Phoenix", description: "Unknown Thai restaurant in Phoenix", latitude: 33.4484, longitude: -112.0740, type: 1 },
+          { name: "Red House", description: "Unknown place in California", latitude: 33.6595, longitude: -117.9988, type: 1 },
+          { name: "Fish Guts", description: "Possibly a restaurant", latitude: 33.6595, longitude: -117.9988, type: 1 },
+          { name: "Brussels (San Clemente)", description: "Belgian restaurant in San Clemente", latitude: 33.4269, longitude: -117.6119, type: 1 },
+          { name: "Shank and Bone", description: "Vietnamese restaurant in San Diego", latitude: 32.7489, longitude: -117.1541, type: 1 },
+          { name: "Little Thai Elephant", description: "Thai restaurant in Portland", latitude: 45.5081, longitude: -122.6532, type: 1 },
+          { name: "Hat Yai", description: "Thai food in Portland", latitude: 45.5587, longitude: -122.6755, type: 1 },
+          { name: "Kachka", description: "Russian restaurant in Portland", latitude: 45.5220, longitude: -122.6567, type: 1 },
+          { name: "Duality Brewing?", description: "Unknown brewery in Portland", latitude: 45.5231, longitude: -122.6765, type: 1 },
+          { name: "Kibrom's Ethiopian", description: "Ethiopian restaurant in Boise", latitude: 43.6205, longitude: -116.1978, type: 1 },
+          { name: "Garibaldi's", description: "Mexican restaurant in Boise", latitude: 43.6078, longitude: -116.2183, type: 1 },
+          { name: "That One Pizza Place", description: "Unknown pizza place in Utah", latitude: 40.7608, longitude: -111.8910, type: 1 },
+          { name: "Kaos Pizza", description: "Pizza place in Denver", latitude: 39.6921, longitude: -104.9800, type: 1 },
+          { name: "Bon Ami", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
+          { name: "Rye's", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
+          { name: "Stem??", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 2 }
+        ]
       };
   },
   methods: {
@@ -685,5 +735,40 @@ p {
     display: flex;
     flex-flow: column;
     align-items: center;
+}
+.best-of-container {
+    border: 1px solid var(--green);
+    display: flex;
+    flex-flow: row nowrap;
+    height: 36rem;
+}
+.best-of-location {
+    padding: 1rem;
+    position: relative;
+    background-color: lightgray;
+    margin: 0.8rem;
+    border-radius: 6px;
+}
+.best-of-locations {
+  width: 45%;
+  overflow: auto;
+}
+.best-of-title {
+  padding: 2rem;
+}
+.small-left-aligned-text {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--pink);
+  text-align: left;
+}
+.upper-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--teal);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2px;
 }
 </style>

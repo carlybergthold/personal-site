@@ -14,6 +14,7 @@ import {MediaQueries, CommonBands} from 'vue-media-queries';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import titleMixin from './mixins/titleMixin';
+import 'leaflet/dist/leaflet.css';
 
 Vue.mixin(titleMixin);
 Vue.use(VueRouter);

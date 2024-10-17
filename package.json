@@ -14,6 +14,7 @@
     "core-js": "^3.8.3",
     "eslint-webpack-plugin": "^4.2.0",
     "express": "^4.17.1",
+    "leaflet": "^1.9.4",
     "nvm": "^0.0.4",
     "sass": "^1.79.1",
     "vue": "^2.6.11",
@@ -21,6 +22,7 @@
     "vue-media-queries": "0.0.5",
     "vue-media-query": "^2.0.1",
     "vue-router": "^3.4.9",
+    "vue2-leaflet": "^2.7.1",
     "webpack": "^5.94.0"
   },
   "devDependencies": {
