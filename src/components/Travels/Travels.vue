@@ -5,8 +5,19 @@
 
         <div class="best-of-container">
           <div class="best-of-locations">
-            <div v-for="location in allLocations" :key="location.name" class="best-of-location">
-              <div class="upper-icon">xxx</div>
+            <div class="map-search-container">
+              <div class="map-icon search-icon">xxx</div>
+              <div>Search</div>
+            </div>
+            <div class="map-filter-container">
+              <div>Filters</div>
+              <div class="filter" :class="getFilterClass(1)" @click="addRemoveFilter(1)">Restaurant</div>
+              <div class="filter" :class="getFilterClass(2)" @click="addRemoveFilter(2)">Bar</div>
+            </div>
+            <div v-for="location in filteredLocations" :key="location.name" class="best-of-location">
+              <!-- <b-icon class="location-icon" pack="fas" :icon="location.type === 1 ? 'utensils' : 'martini-glass'" size="is-small"></b-icon> -->
+              <font-awesome-icon :icon="['fas', location.type === 1 ? 'utensils' : 'beer-mug-empty']"  class="location-icon" />
+
               <div class="small-left-aligned-text">{{location.type === 1 ? 'Restaurant' : 'Brewery'}}</div>
               <div class="best-of-title">{{location.name}}</div>
               <div class="small-left-aligned-text">{{location.description}}</div>
@@ -15,17 +26,16 @@
           <Map :allLocations="allLocations"></Map>
         </div>
 
-
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
-        <div class="tabs-container has-text-weight-bold has-text-white"
-          :class="$mq.above(640) ? 'tabs-container-desktop' : 'tabs-container-mobile'">
+        <div class="tabs-container has-text-weight-bold has-text-white">
           <div v-for="tab in tabs"
             :key="tab.id"
             @click="selectTab(tab.id)"
             class="tab"
             :class="tab.class"
           >
-            {{ $mq.above(640) ? tab.title : tab.mobileTitle }}
+            <span class="tab-title">{{ tab.title }}</span>
+            <span class="mobile-tab-title">{{ tab.mobileTitle }}</span>
             <b-icon v-if="tab.isActive" pack="fas" icon="angle-double-left" size="is-small"></b-icon>
           </div>
         </div>
@@ -601,9 +611,11 @@ export default {
           { name: "That One Pizza Place", description: "Unknown pizza place in Utah", latitude: 40.7608, longitude: -111.8910, type: 1 },
           { name: "Kaos Pizza", description: "Pizza place in Denver", latitude: 39.6921, longitude: -104.9800, type: 1 },
           { name: "Bon Ami", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
-          { name: "Rye's", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
-          { name: "Stem??", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 2 }
-        ]
+          { name: "Rye's Sandwiches", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
+          { name: "Stem??", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 2 },
+          { name: "Root Down", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 1 }
+          ],
+          filters: []
       };
   },
   methods: {
@@ -625,6 +637,24 @@ export default {
     },    
     showHighlights() {
       return this.getActiveTab().showHighlights;
+    },
+    addRemoveFilter(filterType) {
+      const index = this.filters.indexOf(filterType);
+      if (index > -1) {
+        this.filters.splice(index, 1);
+      } else {
+        this.filters.push(filterType);
+      }
+    },
+    getFilterClass(filterType) {
+      return this.filters.includes(filterType) ? 'chosen-filter' : '';
+    }
+  },
+  computed: {
+    filteredLocations() {
+      return this.filters.length === 0
+        ? this.allLocations
+        : this.allLocations.filter(x => this.filters.includes(x.type));
     }
   }
 }
@@ -650,13 +680,8 @@ p {
   flex-flow: row wrap;
   justify-content: center;
   margin: 1rem 0;
-}
-.tabs-container-desktop {
   gap: 0.5rem;
   flex-flow: row wrap;
-}
-.tabs-container-mobile {
-  width: 100%;
 }
 .tab {
   display: flex;
@@ -762,13 +787,58 @@ p {
   color: var(--pink);
   text-align: left;
 }
-.upper-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
+.map-icon {
   background-color: var(--teal);
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 2px;
+}
+.location-icon {
+  float: right;
+}
+.search-icon {
+  float: left;
+  margin-right: 0.2rem;
+}
+.map-search-container {
+  background-color: lightgray;
+  border-radius: 6px;
+  margin: 0.8rem;
+  padding: 0.4rem;
+  text-align: left;
+}
+.map-filter-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.4rem;
+  margin: 0.8rem;
+  align-items: center;
+}
+.filter {
+  background-color: lightgray;
+  border-radius: 16px;
+  padding: 0.4rem 1.4rem;
+}
+.chosen-filter {
+  background-color: var(--orange);
+  position: relative;
+  color: white;
+}
+.mobile-tab-title {
+  display: none;
+}
+@media screen and (max-width: 640px) {
+  .hidden-in-desktop {
+    display: none;
+  }
+  .tabs-container-mobile {
+    width: 100%;
+  }
+  .tab-title {
+    display: none;
+  }
+  .mobile-tab-title {
+    display: block;
+  }
 }
 </style>

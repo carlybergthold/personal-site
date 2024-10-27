@@ -1,6 +1,6 @@
-import Vue from 'vue/dist/vue.esm.js';
+import { createApp } from 'vue';
 import App from "./App.vue";
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import HelloWorld from "./components/HelloWorld.vue";
 import Projects from "./components/Projects/Projects.vue";
 import About from "./components/About/About.vue";
@@ -8,22 +8,16 @@ import Animation from "./components/Projects/Animation.vue";
 import Travels from "./components/Travels/Travels.vue";
 import UhOh from "./components/UhOh.vue";
 import Buefy from 'buefy';
-import "./styles/buefy.scss";
+import 'buefy/dist/buefy.css';
 import "./styles/variables.css";
-import {MediaQueries, CommonBands} from 'vue-media-queries';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import titleMixin from './mixins/titleMixin';
 import 'leaflet/dist/leaflet.css';
-
-Vue.mixin(titleMixin);
-Vue.use(VueRouter);
-Vue.use(Buefy);
-const mediaQueries = new MediaQueries({
-  bands: CommonBands.Bulma
-});
-
-Vue.use(mediaQueries);
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 const routes = [
   { path: '/', component: HelloWorld },
@@ -33,17 +27,19 @@ const routes = [
   { path: '/animation', component: Animation },
   { path: '/travels', component: Travels },
   { path: '/*', component: UhOh }
-]
+];
 
-const router = new VueRouter({
-  mode: 'history',
-  routes: routes
+const router = createRouter({
+  history: createWebHistory(),
+  routes
 });
 
-new Vue({
-  el: '#app',
-  mediaQueries: mediaQueries,
-  mixins: [CommonBands.Bulma.mixin],
-  router,
-  render: h => h(App)
-})
+const app = createApp(App);
+app.mixin(titleMixin);
+app.use(Buefy);
+
+library.add(fas, fab);
+app.component('font-awesome-icon', FontAwesomeIcon);
+
+app.use(router);
+app.mount('#app');

@@ -20,7 +20,7 @@
   </template>
   
   <script>
-    import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+    import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet';
     import "leaflet/dist/leaflet.css";
     import L from 'leaflet';
     import 'leaflet/dist/leaflet.css';
