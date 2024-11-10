@@ -101,7 +101,7 @@ export default {
   justify-content: center;
 }
 .attribute-link {
-  color: black;
+  color: black !important;
 }
 .max-image {
   width: 750px;

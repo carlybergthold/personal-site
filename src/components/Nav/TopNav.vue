@@ -4,64 +4,63 @@
       <b-navbar-item>
         <router-link to="/home">
           <span
-            :class="$mq.above(640) ? 'nav-link-desktop' : 'nav-link-mobile'"
-            class="teal-text"
+            class="teal-text nav-link"
             >c</span
           >
           <span
-            :class="$mq.above(640) ? 'nav-link-desktop' : 'nav-link-mobile'"
-            class="yellow-text"
+            class="yellow-text nav-link"
             >a</span
           >
           <span
-            :class="$mq.above(640) ? 'nav-link-desktop' : 'nav-link-mobile'"
-            class="orange-text"
+            class="orange-text nav-link"
             >r</span
           >
           <span
-            :class="$mq.above(640) ? 'nav-link-desktop' : 'nav-link-mobile'"
-            class="green-text"
+            class="green-text nav-link"
             >l</span
           >
           <span
-            :class="$mq.above(640) ? 'nav-link-desktop' : 'nav-link-mobile'"
-            class="pink-text"
+            class="pink-text nav-link"
             >y</span
           >
 
-          <span v-if="$mq.above(640)" class="nav-link-desktop teal-text ml-5"
+          <span class="hidden-in-mobile">
+
+            
+            <span class="nav-link teal-text ml-5"
             >b</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop yellow-text"
+            >
+            <span class="nav-link yellow-text"
             >e</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop orange-text"
+            >
+            <span class="nav-link orange-text"
             >r</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop green-text"
+            >
+            <span class="nav-link green-text"
             >g</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop pink-text"
+            >
+            <span class="nav-link pink-text"
             >t</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop teal-text"
+            >
+            <span class="nav-link teal-text"
             >h</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop yellow-text"
+            >
+            <span class="nav-link yellow-text"
             >o</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop orange-text"
+            >
+            <span class="nav-link orange-text"
             >l</span
-          >
-          <span v-if="$mq.above(640)" class="nav-link-desktop green-text"
+            >
+            <span class="nav-link green-text"
             >d</span
-          >
+            >
+          </span>
         </router-link>
       </b-navbar-item>
     </template>
 
     <template #end>
-      <b-navbar-item v-if="!$mq.above(1023)">
+      <b-navbar-item class="hidden-in-desktop">
         <router-link to="/home" class="nav-link">Home</router-link>
       </b-navbar-item>
       <b-navbar-item>
@@ -84,16 +83,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-link-desktop {
+.navbar-brand .nav-link {
   margin-left: 0.6rem;
   font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
 }
-.nav-link-mobile {
-  margin-left: 0.6rem;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
+@media screen and (min-width: 1023px) {
+  .hidden-in-desktop {
+    display: none;
+  }
+}
+@media screen and (max-width: 640px) {
+  .nav-link {
+    margin-left: 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .hidden-in-mobile {
+    display: none;
+  }
 }
 </style>

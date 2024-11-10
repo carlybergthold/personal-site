@@ -38,3 +38,11 @@
 .pink-background {
   background-color: var(--pink);
 }
+
+.has-text-primary, a {
+  color: var(--teal) !important;
+}
+
+.has-background-primary {
+  background-color: var(--teal) !important;
+}
