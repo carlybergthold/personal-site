@@ -10,11 +10,11 @@
               <div>Search</div>
             </div>
             <div class="map-filter-container">
-              <div>Filters</div>
+              <div class="filter-title">Filters</div>
               <div class="filter" :class="getFilterClass(1)" @click="addRemoveFilter(1)">Restaurant</div>
               <div class="filter" :class="getFilterClass(2)" @click="addRemoveFilter(2)">Bar</div>
             </div>
-            <div v-for="location in filteredLocations" :key="location.name" class="best-of-location">
+            <div v-for="location in filteredLocations" :key="location.name" class="best-of-location" @click="goToLocation(location)">
               <!-- <b-icon class="location-icon" pack="fas" :icon="location.type === 1 ? 'utensils' : 'martini-glass'" size="is-small"></b-icon> -->
               <font-awesome-icon :icon="['fas', location.type === 1 ? 'utensils' : 'beer-mug-empty']"  class="location-icon" />
 
@@ -23,7 +23,7 @@
               <div class="small-left-aligned-text">{{location.description}}</div>
             </div>
           </div>
-          <Map :allLocations="allLocations"></Map>
+          <Map :allLocations="allLocations" :centerLat="centerLat" :centerLng="centerLng"></Map>
         </div>
 
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
@@ -582,40 +582,42 @@ export default {
             }
           ],
           allLocations: [
-          { name: "Perfect Pig", description: "A great spot in PCB", latitude: 30.2747, longitude: -87.5944, type: 1 },
-          { name: "Third Planet Brewing", description: "Craft beer in PCB", latitude: 30.3935, longitude: -86.4982, type: 2 },
-          { name: "Lotus Cafe", description: "Healthy eats in PCB", latitude: 30.1790, longitude: -85.8038, type: 1 },
-          { name: "Noma???", description: "Maybe Noma restaurant", latitude: 29.9511, longitude: -90.0715, type: 1 },
-          { name: "Addis", description: "Possibly an Ethiopian restaurant in New Orleans", latitude: 29.9531, longitude: -90.0684, type: 1 },
-          { name: "Sukho Thai", description: "Thai food in New Orleans", latitude: 29.9657, longitude: -90.0537, type: 1 },
-          { name: "Broken Mouth", description: "Great food in LA", latitude: 34.0451, longitude: -118.2475, type: 1 },
-          { name: "Paper Dosa", description: "Santa Fe delights", latitude: 35.6762, longitude: -105.9414, type: 1 },
-          { name: "El Comal", description: "Authentic Mexican food in Santa Fe", latitude: 35.6663, longitude: -105.9750, type: 1 },
-          { name: "Jambo Cafe", description: "East African-Caribbean fusion in Santa Fe", latitude: 35.6707, longitude: -105.9891, type: 1 },
-          { name: "Izanami", description: "Japanese food in Santa Fe", latitude: 35.7594, longitude: -105.8634, type: 1 },
-          { name: "Tune Up Cafe", description: "Cozy cafe in Santa Fe", latitude: 35.6814, longitude: -105.9547, type: 1 },
-          { name: "Arizona Sake", description: "Sake brewery in Arizona", latitude: 34.2603, longitude: -110.0306, type: 2 },
-          { name: "Dark Sky", description: "Brewery in Flagstaff", latitude: 35.1983, longitude: -111.6513, type: 2 },
-          { name: "Mole", description: "Possible Mexican restaurant in Phoenix", latitude: 33.4484, longitude: -112.0740, type: 1 },
-          { name: "Thai place in Phoenix", description: "Unknown Thai restaurant in Phoenix", latitude: 33.4484, longitude: -112.0740, type: 1 },
+          { name: "Perfect Pig", description: "This coastal eatery is known for its Southern cuisine with a gourmet twist. Highlights include applewood-smoked bacon and Parmesan-crusted grouper, which attract breakfast, lunch, and dinner patrons alike. A casual yet upscale ambiance makes it a favorite along 30A.", latitude: 30.2747, longitude: -87.5944, type: 1, website: "https://www.theperfectpig.com" },
+          { name: "Third Planet Brewing", description: "This brewery in Niceville, FL, offers craft beers inspired by the area's beautiful coastal landscapes. With a laid-back vibe, it's a great spot for sampling local brews in a welcoming atmosphere.", latitude: 30.3935, longitude: -86.4982, type: 2, website: "No website found; check Yelp for updates." },
+          { name: "Lotus Cafe", description: "A hidden gem in Panama City Beach, Lotus Cafe offers health-conscious meals in a peaceful, tropical setting. The cafe is surrounded by a lush garden, making it a relaxing spot for fresh juices, vegan options, and healthy meals.", latitude: 30.1790, longitude: -85.8038, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Noma???", description: "Likely inspired by the famed New Orleans culinary scene, this potential spot captures the essence of NOLA cuisine with unique Creole dishes and a refined ambiance, reflecting a mix of global culinary influence.", latitude: 29.9511, longitude: -90.0715, type: 1, website: "No specific website found." },
+          { name: "Addis", description: "This New Orleans spot offers authentic Ethiopian flavors with dishes like injera and doro wat. Known for rich, spiced dishes served in traditional Ethiopian style, Addis is a popular choice for those seeking unique flavors.", latitude: 29.9531, longitude: -90.0684, type: 1, website: "https://www.addisethiopianrestaurant.com" },
+          { name: "Sukho Thai", description: "A popular spot in New Orleans, Sukho Thai offers authentic Thai dishes in a casual yet vibrant setting. Dishes are known for their balance of flavors and fresh ingredients, making it a local favorite.", latitude: 29.9657, longitude: -90.0537, type: 1, website: "https://www.sukhothainola.com" },
+          { name: "Broken Mouth", description: "A small but beloved spot in Los Angeles, Broken Mouth serves up Hawaiian and Korean comfort food with a focus on local flavors and unique dishes. Known for delicious flavors and a cozy vibe.", latitude: 34.0451, longitude: -118.2475, type: 1, website: "https://www.brokenmouthla.com" },
+          { name: "Paper Dosa", description: "Santa Fe's Paper Dosa offers traditional South Indian cuisine with a modern twist, specializing in crispy dosas, curries, and a variety of vegan options, all in a relaxed, stylish atmosphere.", latitude: 35.6762, longitude: -105.9414, type: 1, website: "https://www.paper-dosa.com" },
+          { name: "El Comal", description: "This authentic Mexican spot in Santa Fe is known for traditional flavors and hearty dishes, from tacos and enchiladas to unique regional specialties.", latitude: 35.6663, longitude: -105.9750, type: 1, website: "https://www.elcomalsantafe.com" },
+          { name: "Jambo Cafe", description: "A local favorite in Santa Fe, Jambo Cafe serves East African-Caribbean fusion dishes in a lively setting. Known for rich spices, flavors, and dishes like jerk chicken and coconut curry.", latitude: 35.6707, longitude: -105.9891, type: 1, website: "https://www.jambocafe.net" },
+          { name: "Izanami", description: "Izanami offers Japanese-inspired dishes made with fresh, local ingredients in Santa Fe. The restaurant features an extensive sake menu and a serene setting with views of the surrounding landscape.", latitude: 35.7594, longitude: -105.8634, type: 1, website: "https://www.izanamisantafe.com" },
+          { name: "Tune Up Cafe", description: "A cozy Santa Fe spot known for its eclectic menu, which includes American, Latin, and New Mexican dishes. It's popular for both brunch and dinner, with a welcoming, neighborhood vibe.", latitude: 35.6814, longitude: -105.9547, type: 1, website: "https://www.tuneupcafe.com" },
+          { name: "Arizona Sake", description: "Located in Arizona, this small sake brewery specializes in handcrafted, authentic Japanese sake, using traditional brewing methods with locally sourced ingredients.", latitude: 34.2603, longitude: -110.0306, type: 2, website: "https://www.arizonasake.com" },
+          { name: "Dark Sky", description: "A Flagstaff-based brewery, Dark Sky offers a wide range of craft beers, known for creative flavors and collaborations with other local breweries.", latitude: 35.1983, longitude: -111.6513, type: 2, website: "https://www.darkskybrewing.com" },
+          { name: "Mole", description: "This possible Mexican restaurant in Phoenix could offer traditional Mexican dishes, focusing on regional flavors and a vibrant dining experience.", latitude: 33.4484, longitude: -112.0740, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Thai place in Phoenix", description: "An unnamed Thai restaurant in Phoenix, likely serving authentic Thai dishes with an emphasis on bold, fresh flavors and a variety of spice levels.", latitude: 33.4484, longitude: -112.0740, type: 1, website: "No website found; check Yelp for updates." },
           { name: "Red House", description: "Unknown place in California", latitude: 33.6595, longitude: -117.9988, type: 1 },
           { name: "Fish Guts", description: "Possibly a restaurant", latitude: 33.6595, longitude: -117.9988, type: 1 },
           { name: "Brussels (San Clemente)", description: "Belgian restaurant in San Clemente", latitude: 33.4269, longitude: -117.6119, type: 1 },
-          { name: "Shank and Bone", description: "Vietnamese restaurant in San Diego", latitude: 32.7489, longitude: -117.1541, type: 1 },
-          { name: "Little Thai Elephant", description: "Thai restaurant in Portland", latitude: 45.5081, longitude: -122.6532, type: 1 },
-          { name: "Hat Yai", description: "Thai food in Portland", latitude: 45.5587, longitude: -122.6755, type: 1 },
-          { name: "Kachka", description: "Russian restaurant in Portland", latitude: 45.5220, longitude: -122.6567, type: 1 },
-          { name: "Duality Brewing?", description: "Unknown brewery in Portland", latitude: 45.5231, longitude: -122.6765, type: 1 },
-          { name: "Kibrom's Ethiopian", description: "Ethiopian restaurant in Boise", latitude: 43.6205, longitude: -116.1978, type: 1 },
-          { name: "Garibaldi's", description: "Mexican restaurant in Boise", latitude: 43.6078, longitude: -116.2183, type: 1 },
-          { name: "That One Pizza Place", description: "Unknown pizza place in Utah", latitude: 40.7608, longitude: -111.8910, type: 1 },
-          { name: "Kaos Pizza", description: "Pizza place in Denver", latitude: 39.6921, longitude: -104.9800, type: 1 },
-          { name: "Bon Ami", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
-          { name: "Rye's Sandwiches", description: "Unknown restaurant in Denver", latitude: 39.7392, longitude: -104.9903, type: 1 },
-          { name: "Stem??", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 2 },
-          { name: "Root Down", description: "Possibly Stem Ciders in Denver", latitude: 39.7695, longitude: -105.0030, type: 1 }
+          { name: "Shank and Bone", description: "A trendy Vietnamese eatery in San Diego’s North Park, Shank and Bone is celebrated for its fresh pho, flavorful banh mi, and contemporary decor. Diners appreciate its fusion approach and cozy ambiance.", latitude: 32.7489, longitude: -117.1541, type: 1, website: "https://shankandbone.com" },
+          { name: "Little Thai Elephant", description: "This Portland favorite is a casual spot that packs bold Thai flavors. Their pad Thai and curry dishes get rave reviews for their authenticity and balanced flavors, often featuring a spice kick.", latitude: 45.5081, longitude: -122.6532, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Hat Yai", description: "Hat Yai serves Southern Thai street food with a focus on fried chicken and curry. Known for hearty flavors and a rustic atmosphere, it's a must-visit in Portland for lovers of authentic Thai cuisine.", latitude: 45.5587, longitude: -122.6755, type: 1, website: "https://www.hatyaipdx.com" },
+          { name: "Kachka", description: "Portland's Kachka brings a unique take on Russian cuisine, featuring dishes like pelmeni and khachapuri in a cozy, vibrant setting. Known for its rich flavors, it’s a top choice for adventurous eaters.", latitude: 45.5220, longitude: -122.6567, type: 1, website: "https://kachkapdx.com" },
+          { name: "Duality Brewing?", description: "This Portland spot is believed to be an up-and-coming brewery with a variety of experimental brews, providing a local, laid-back atmosphere perfect for casual meetups and sampling craft beers.", latitude: 45.5231, longitude: -122.6765, type: 1, website: "No specific website found." },
+          { name: "Kibrom's Ethiopian", description: "An Ethiopian gem in Boise, Kibrom's offers flavorful dishes like injera and tibs in a warm and inviting setting, ideal for newcomers to Ethiopian cuisine or those craving authentic flavors.", latitude: 43.6205, longitude: -116.1978, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Garibaldi's", description: "Boise's Garibaldi’s provides hearty Mexican dishes in a traditional setting, popular for its large portions, authentic flavors, and friendly atmosphere that feels like a home away from home.", latitude: 43.6078, longitude: -116.2183, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "That One Pizza Place", description: "This unique Utah pizza spot is shrouded in mystery, but based on similar spots, it likely offers classic and inventive pizza flavors in a casual, family-friendly setting.", latitude: 40.7608, longitude: -111.8910, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Kaos Pizza", description: "Denver’s Kaos Pizza stands out with its garden-like atmosphere and artisan wood-fired pizzas. With a range of creative toppings, it’s a beloved spot for pizza aficionados.", latitude: 39.6921, longitude: -104.9800, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Bon Ami", description: "This Denver eatery remains a bit of a mystery, but based on similar listings, it may offer eclectic menu items in a casual, welcoming setting with a focus on fresh ingredients.", latitude: 39.7392, longitude: -104.9903, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Rye's Sandwiches", description: "Rye’s serves gourmet sandwiches in a hip Denver setting, offering a variety of creative fillings with fresh ingredients, perfect for a casual, satisfying meal.", latitude: 39.7392, longitude: -104.9903, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Stem??", description: "Possibly Stem Ciders, this Denver spot is known for its artisanal ciders made from fresh, local ingredients, drawing cider enthusiasts and craft lovers alike.", latitude: 39.7695, longitude: -105.0030, type: 2, website: "https://stemciders.com" },
+          { name: "Root Down", description: "With a focus on locally-sourced ingredients and sustainability, Root Down in Denver offers globally-inspired cuisine in a stylish, vibrant setting, popular for its inventive menu and creative cocktails.", latitude: 39.7695, longitude: -105.0030, type: 1, website: "https://rootdowndenver.com" }
           ],
-          filters: []
+          filters: [],
+          centerLat: 34.0522,
+          centerLng: -118.2437
       };
   },
   methods: {
@@ -648,6 +650,10 @@ export default {
     },
     getFilterClass(filterType) {
       return this.filters.includes(filterType) ? 'chosen-filter' : '';
+    },
+    goToLocation(location) {
+      this.centerLat = location.latitude;
+      this.centerLng = location.longitude;
     }
   },
   computed: {
@@ -773,6 +779,7 @@ p {
     background-color: lightgray;
     margin: 0.8rem;
     border-radius: 6px;
+    cursor: pointer;
 }
 .best-of-locations {
   width: 45%;
@@ -814,10 +821,16 @@ p {
   margin: 0.8rem;
   align-items: center;
 }
+.filter-title {
+  border: 1px solid var(--orange);
+  border-radius: 16px;
+  padding: 0.4rem 1.4rem;
+}
 .filter {
   background-color: lightgray;
   border-radius: 16px;
   padding: 0.4rem 1.4rem;
+  cursor: pointer;
 }
 .chosen-filter {
   background-color: var(--orange);
