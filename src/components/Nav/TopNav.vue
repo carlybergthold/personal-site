@@ -83,13 +83,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-link {
+.navbar-brand .nav-link {
   margin-left: 0.6rem;
   font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
 }
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 1023px) {
   .hidden-in-desktop {
     display: none;
   }

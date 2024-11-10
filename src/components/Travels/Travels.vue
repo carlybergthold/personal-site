@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container has-text-centered">
 
-        <div class="best-of-container">
+        <!-- <div class="best-of-container">
           <div class="best-of-locations">
             <div class="map-search-container">
               <div class="map-icon search-icon">xxx</div>
@@ -15,16 +15,14 @@
               <div class="filter" :class="getFilterClass(2)" @click="addRemoveFilter(2)">Bar</div>
             </div>
             <div v-for="location in filteredLocations" :key="location.name" class="best-of-location" @click="goToLocation(location)">
-              <!-- <b-icon class="location-icon" pack="fas" :icon="location.type === 1 ? 'utensils' : 'martini-glass'" size="is-small"></b-icon> -->
               <font-awesome-icon :icon="['fas', location.type === 1 ? 'utensils' : 'beer-mug-empty']"  class="location-icon" />
-
               <div class="small-left-aligned-text">{{location.type === 1 ? 'Restaurant' : 'Brewery'}}</div>
               <div class="best-of-title">{{location.name}}</div>
               <div class="small-left-aligned-text">{{location.description}}</div>
             </div>
           </div>
           <Map :allLocations="allLocations" :centerLat="centerLat" :centerLng="centerLng"></Map>
-        </div>
+        </div> -->
 
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
         <div class="tabs-container has-text-weight-bold has-text-white">
