@@ -20,13 +20,13 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
 const routes = [
-  { path: '/', component: HelloWorld },
-  { path: '/home', component: HelloWorld },
-  { path: '/projects', component: Projects },
-  { path: '/about', component: About },
-  { path: '/animation', component: Animation },
-  { path: '/travels', component: Travels },
-  { path: '/*', component: UhOh }
+  { path: '/', component: HelloWorld, name: 'Home', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
+  { path: '/home', component: HelloWorld, name: 'Home3', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
+  { path: '/projects', component: Projects, name: 'Projects', meta: { backgroundColor: 'var(--quaternary-background-color)', primaryFontColor: 'var(--quaternary-text-color)' } },
+  { path: '/about', component: About, name: 'About', meta: { backgroundColor: 'var(--secondary-background-color)', primaryFontColor: 'var(--secondary-text-color)' } },
+  { path: '/animation', component: Animation, name: 'Animation', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
+  { path: '/travels', component: Travels, name: 'Travels', meta: { backgroundColor: 'var(--tertiary-background-color)', primaryFontColor: 'var(--tertiary-text-color)' } },
+  { path: '/*', component: UhOh, name: 'Home2', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } }
 ];
 
 const router = createRouter({
@@ -41,5 +41,13 @@ app.use(Buefy);
 library.add(fas, fab);
 app.component('font-awesome-icon', FontAwesomeIcon);
 
+router.beforeEach((to, from, next) => {
+  document.documentElement.style.setProperty('--background-color', to.meta.backgroundColor);
+  document.documentElement.style.setProperty('--primary-font-color', to.meta.primaryFontColor);
+
+  next();
+});
+
 app.use(router);
 app.mount('#app');
+

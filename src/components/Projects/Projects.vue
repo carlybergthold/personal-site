@@ -4,7 +4,7 @@
       <div class="hero-body">
         <div class="columns">
           <div class="column is-one-third project-description">
-            <p class="headline title has-text-black">scoot scout</p>
+            <p class="headline title has-text-primary">scoot scout</p>
             <p class="subtitle">bootcamp front end capstone
               <br><span class="has-text-weight-light is-size-6">TECH: React.js, JSON server, Leaflet, Mapbox, various APIs</span>
             </p>
@@ -29,17 +29,17 @@
         </div>
       </div>
     </section>
-    <section class="hero is-fullheight-with-navbar has-background-primary">
+    <section class="hero is-fullheight-with-navbar has-background-primary has-text-white">
       <div class="hero-body">
         <div class="columns">
             <div class="column is-one-third project-description">
-            <p class="headline title has-text-black">personal attributes</p>
+            <p class="headline title has-text-white">personal attributes</p>
             <p class="subtitle">client project (in progress)
               <br><span class="has-text-weight-light is-size-6">TECH: React.js, Bulma, Google Firebase</span>
             </p>
             <p>Discover your "spiritual personality" through quizzes, your interests, or your type from other popular personality frameworks like the Enneagram and Myers Briggs.</p>
             <p class="mt-4 is-size-5 has-text-weight-bold">
-              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="attribute-link is-flex">View on Github
+              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="is-flex has-text-white">View on Github
                 <b-icon
                   pack="fas"
                   icon="angle-double-right"
@@ -89,22 +89,17 @@ export default {
 </script>
 
 <style scoped>
-.headline {
-  text-shadow: 1px 1px 0px var(--orange),
-	4px 2px 0px var(--orange),
-	5px 3px 0px var(--orange),
-	4px 4px 0px var(--orange);
-}
 .project-description {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
 }
-.attribute-link {
-  color: black !important;
+.attribute-image img {
+  border-radius: 18px;
 }
 .max-image {
   width: 750px;
+  border-radius: 18px;
 }
 .display-on-safari {
   align-items: flex-start;

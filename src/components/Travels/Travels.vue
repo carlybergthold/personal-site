@@ -6,7 +6,9 @@
         <!-- <div class="best-of-container">
           <div class="best-of-locations">
             <div class="map-search-container">
-              <div class="map-icon search-icon">xxx</div>
+              <div class="map-icon search-icon">              
+                <font-awesome-icon icon="magnifying-glass" />
+              </div>
               <div>Search</div>
             </div>
             <div class="map-filter-container">
@@ -21,16 +23,19 @@
               <div class="small-left-aligned-text">{{location.description}}</div>
             </div>
           </div>
-          <Map :allLocations="allLocations" :centerLat="centerLat" :centerLng="centerLng"></Map>
+          <Map 
+            :allLocations="allLocations" 
+            :selectedLocation="selectedLocation" 
+            :goToLocation="goToLocation"
+          ></Map>
         </div> -->
 
         <img src="@/assets/images/cam-and-carly.jpeg" class="us-image">
-        <div class="tabs-container has-text-weight-bold has-text-white">
+        <div class="tabs-container has-text-weight-bold">
           <div v-for="tab in tabs"
             :key="tab.id"
             @click="selectTab(tab.id)"
             class="tab"
-            :class="tab.class"
           >
             <span class="tab-title">{{ tab.title }}</span>
             <span class="mobile-tab-title">{{ tab.mobileTitle }}</span>
@@ -432,15 +437,86 @@ How grateful and lucky we felt to bask in the sun and the splendor.</p>
             <location-container 
               :title="getActiveTab().locationContainer.title" 
               :dates="getActiveTab().locationContainer.dates"
-              :comingSoon="true"
             ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">Highlights
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="getActiveTab().showHighlights">
+              <p>As they often do, our stay in Boise started with an immediate hike up the closest and tallest peak. Despite the wildfire smoke and arid landscape, Boise proper earned its moniker of City of Trees, a verdant spot nestled among brown hills. Not quite knowing what to expect, we were hooked.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/boise/hike.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Cam after conquering Table Rock</div>
+                </div>               
+              </div>
+              <p>Although I'm sure Boise in winter is a whole different animal, Boise in summer is a thing to behold: a magnificent greenway, possibly the nicest parks we've seen (potato billionaire funded, because Idaho!), and the Boise River, all filled with people walking, biking, SUPing, kayaking, floating, and surfing (river surfing! in Boise!).</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/boise/bike.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Bike dorks by the water</div>
+                </div>              
+                <div>
+                  <img src="@/assets/images/boise/tube.jpeg" class="horizontal-blog-image">
+                  <div class="image-description">Cheesing on the double tube</div>
+                </div>
+              </div>
+              <p>We kept our momentum in motion from Eugene, biking nearly every day and nearly every place we went, enjoying a sunny Saturday tubing in the river, a concert at a converted knitting factory, attending the Western Idaho State Fair (have we become Fair people? survey says yes). Not knowing what to expect, Boise exceeded all our expectations and then some. We'll be back.</p>
+              <div class="image-container">
+              <div>
+                  <img src="@/assets/images/boise/tube-2.jpeg" class="vertical-blog-image">
+                  <div class="image-description">TN water could never!</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div v-if="showTabContent(8)" class="has-text-left ml-2 mr-2">
             <location-container 
               :title="getActiveTab().locationContainer.title" 
               :dates="getActiveTab().locationContainer.dates"
-              :comingSoon="true"
             ></location-container>
+            <div class="dropdown strikethrough" @click="getActiveTab().showHighlights = !getActiveTab().showHighlights">Highlights
+              <b-icon pack="fas" :key="getActiveTab().showHighlights" :icon="getActiveTab().showHighlights ? 'angle-up' : 'angle-down'" size="is-small"></b-icon>
+            </div>
+            <div v-if="getActiveTab().showHighlights">
+              <p>In Denver, you can wake up early for a hike, recover in the afternoon with a meal and a beer, go to a show in the evening and be back home before 10pm to do it all over again. And luckily for us, we avoided most of the constant crawl of the interstate by walking and biking to the many shops, theaters, grocers, restaurants, and parks near our Washington Park apartment.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/denver/botanic-gardens.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Bee friend at the botanic gardens</div>
+                </div>               
+                <div>
+                  <img src="@/assets/images/denver/church-of-cannabis.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Church of Cannabis light show</div>
+                </div>              
+              </div>
+              <p>As is our new tradition, we started our exploration of the city with a Sunday hike, followed by a Red Rocks concert on Monday. We made acquaintance with our neighborhood over the following days, soaking up the Colorado sun (300 clear days a year!) during our lunch break walks and evening strolls, elevation sickness be darned. Carly joined a gym right around the corner from the apartment while Cam wheezed his way through running Washington Park on the regular.</p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/denver/garden-of-gods.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Garden of the Gods bike trip for Carly's birthday</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/denver/rocky-mountain.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Rocky Mountain National Park</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/denver/roxborough-2.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Roxborough State Park</div>
+                </div>
+              </div>
+              <p>We saw some of our favorite bands around town, surveyed the festivities at Oktoberfest, indulged in the creative (another Meow Wolf!, Int'l Church, and other museums), found peace among the flowers at the Botanical Gardens, flexed our e-bike skills at Garden of the Gods, had our butts kicked hiking at Rocky Mountain National Park, recoiled over the $40 tacos at Casa Bonita, and enjoyed hosting both friends and family for some weekends of fun. </p>
+              <div class="image-container">
+                <div>
+                  <img src="@/assets/images/denver/meow-wolf.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Meow Wolf with our friends Zach and Michelle</div>
+                </div>
+                <div>
+                  <img src="@/assets/images/denver/snow-bikes.jpeg" class="vertical-blog-image">
+                  <div class="image-description">Our poor, freezing bikes</div>
+                </div>
+              </div>
+              <p>Although admittedly less proximate than it should be, Cameron's job took him to the airport several times during our stay, hitting the conference circuit for work for nearly a month: Seattle, Las Vegas, DC, Nashville, and Phoenix in quick succession. It was fall when he left and felt like the deep of winter when he returned: an unusually early snow storm dumped nearly three feet of snow on the city, which was a welcome excuse to hunker down (though plenty of enterprising neighbors built snowmen or snow forts in the park).</p>
+            </div>
           </div>
         </div>
       </div>
@@ -469,8 +545,6 @@ export default {
             {
               id: 1,
               isActive: false,
-              class: 'pink-background',
-              borderClass: 'pink-border',
               title: 'FLORIDA',
               mobileTitle: 'FL',
               showHighlights: false,
@@ -484,8 +558,6 @@ export default {
             {
               id: 2,
               isActive: false,
-              class: 'yellow-background',
-              borderClass: 'yellow-border',
               title: 'LOUISIANA',
               mobileTitle: 'LA',
               showHighlights: false,
@@ -499,8 +571,6 @@ export default {
             {
               id: 3,
               isActive: false,
-              class: 'teal-background',
-              borderClass: 'teal-border',
               title: 'NEW MEXICO',
               mobileTitle: 'NM',
               showHighlights: false,
@@ -514,8 +584,6 @@ export default {
             {
               id: 4,
               isActive: false,
-              class: 'orange-background',
-              borderClass: 'orange-border',
               title: 'ARIZONA',
               mobileTitle: 'AZ',
               showHighlights: false,
@@ -527,8 +595,6 @@ export default {
             {
               id: 5,
               isActive: false,
-              class: 'green-background',
-              borderClass: 'green-border',
               title: 'CALIFORNIA',
               mobileTitle: 'CA',
               showHighlights: false,
@@ -539,9 +605,7 @@ export default {
             },
             {
               id: 6,
-              isActive: true,
-              class: 'pink-background',
-              borderClass: 'pink-border',
+              isActive: false,
               title: 'OREGON',
               mobileTitle: 'OR',
               showHighlights: false,
@@ -555,8 +619,6 @@ export default {
             {
               id: 7,
               isActive: false,
-              class: 'yellow-background',
-              borderClass: 'yellow-border',
               title: 'IDAHO',
               mobileTitle: 'ID',
               showHighlights: false,
@@ -567,12 +629,10 @@ export default {
             },
             {
               id: 8,
-              isActive: false,
-              class: 'teal-background',
-              borderClass: 'teal-border',
+              isActive: true,
               title: 'COLORADO',
               mobileTitle: 'CO',
-              showHighlights: false,
+              showHighlights: true,
               locationContainer: {
                 title: "Denver", 
                 dates: "Sept 13th - Nov 16th"
@@ -599,23 +659,22 @@ export default {
           { name: "Red House", description: "Unknown place in California", latitude: 33.6595, longitude: -117.9988, type: 1 },
           { name: "Fish Guts", description: "Possibly a restaurant", latitude: 33.6595, longitude: -117.9988, type: 1 },
           { name: "Brussels (San Clemente)", description: "Belgian restaurant in San Clemente", latitude: 33.4269, longitude: -117.6119, type: 1 },
-          { name: "Shank and Bone", description: "A trendy Vietnamese eatery in San Diego’s North Park, Shank and Bone is celebrated for its fresh pho, flavorful banh mi, and contemporary decor. Diners appreciate its fusion approach and cozy ambiance.", latitude: 32.7489, longitude: -117.1541, type: 1, website: "https://shankandbone.com" },
+          { name: "Shank and Bone", description: "A trendy Vietnamese eatery in San Diego's North Park, Shank and Bone is celebrated for its fresh pho, flavorful banh mi, and contemporary decor. Diners appreciate its fusion approach and cozy ambiance.", latitude: 32.7489, longitude: -117.1541, type: 1, website: "https://shankandbone.com" },
           { name: "Little Thai Elephant", description: "This Portland favorite is a casual spot that packs bold Thai flavors. Their pad Thai and curry dishes get rave reviews for their authenticity and balanced flavors, often featuring a spice kick.", latitude: 45.5081, longitude: -122.6532, type: 1, website: "No website found; check Yelp for updates." },
           { name: "Hat Yai", description: "Hat Yai serves Southern Thai street food with a focus on fried chicken and curry. Known for hearty flavors and a rustic atmosphere, it's a must-visit in Portland for lovers of authentic Thai cuisine.", latitude: 45.5587, longitude: -122.6755, type: 1, website: "https://www.hatyaipdx.com" },
-          { name: "Kachka", description: "Portland's Kachka brings a unique take on Russian cuisine, featuring dishes like pelmeni and khachapuri in a cozy, vibrant setting. Known for its rich flavors, it’s a top choice for adventurous eaters.", latitude: 45.5220, longitude: -122.6567, type: 1, website: "https://kachkapdx.com" },
+          { name: "Kachka", description: "Portland's Kachka brings a unique take on Russian cuisine, featuring dishes like pelmeni and khachapuri in a cozy, vibrant setting. Known for its rich flavors, it's a top choice for adventurous eaters.", latitude: 45.5220, longitude: -122.6567, type: 1, website: "https://kachkapdx.com" },
           { name: "Duality Brewing?", description: "This Portland spot is believed to be an up-and-coming brewery with a variety of experimental brews, providing a local, laid-back atmosphere perfect for casual meetups and sampling craft beers.", latitude: 45.5231, longitude: -122.6765, type: 1, website: "No specific website found." },
           { name: "Kibrom's Ethiopian", description: "An Ethiopian gem in Boise, Kibrom's offers flavorful dishes like injera and tibs in a warm and inviting setting, ideal for newcomers to Ethiopian cuisine or those craving authentic flavors.", latitude: 43.6205, longitude: -116.1978, type: 1, website: "No website found; check Yelp for updates." },
-          { name: "Garibaldi's", description: "Boise's Garibaldi’s provides hearty Mexican dishes in a traditional setting, popular for its large portions, authentic flavors, and friendly atmosphere that feels like a home away from home.", latitude: 43.6078, longitude: -116.2183, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Garibaldi's", description: "Boise's Garibaldi's provides hearty Mexican dishes in a traditional setting, popular for its large portions, authentic flavors, and friendly atmosphere that feels like a home away from home.", latitude: 43.6078, longitude: -116.2183, type: 1, website: "No website found; check Yelp for updates." },
           { name: "That One Pizza Place", description: "This unique Utah pizza spot is shrouded in mystery, but based on similar spots, it likely offers classic and inventive pizza flavors in a casual, family-friendly setting.", latitude: 40.7608, longitude: -111.8910, type: 1, website: "No website found; check Yelp for updates." },
-          { name: "Kaos Pizza", description: "Denver’s Kaos Pizza stands out with its garden-like atmosphere and artisan wood-fired pizzas. With a range of creative toppings, it’s a beloved spot for pizza aficionados.", latitude: 39.6921, longitude: -104.9800, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Kaos Pizza", description: "Denver's Kaos Pizza stands out with its garden-like atmosphere and artisan wood-fired pizzas. With a range of creative toppings, it's a beloved spot for pizza aficionados.", latitude: 39.6921, longitude: -104.9800, type: 1, website: "No website found; check Yelp for updates." },
           { name: "Bon Ami", description: "This Denver eatery remains a bit of a mystery, but based on similar listings, it may offer eclectic menu items in a casual, welcoming setting with a focus on fresh ingredients.", latitude: 39.7392, longitude: -104.9903, type: 1, website: "No website found; check Yelp for updates." },
-          { name: "Rye's Sandwiches", description: "Rye’s serves gourmet sandwiches in a hip Denver setting, offering a variety of creative fillings with fresh ingredients, perfect for a casual, satisfying meal.", latitude: 39.7392, longitude: -104.9903, type: 1, website: "No website found; check Yelp for updates." },
+          { name: "Rye's Sandwiches", description: "Rye's serves gourmet sandwiches in a hip Denver setting, offering a variety of creative fillings with fresh ingredients, perfect for a casual, satisfying meal.", latitude: 39.7392, longitude: -104.9903, type: 1, website: "No website found; check Yelp for updates." },
           { name: "Stem??", description: "Possibly Stem Ciders, this Denver spot is known for its artisanal ciders made from fresh, local ingredients, drawing cider enthusiasts and craft lovers alike.", latitude: 39.7695, longitude: -105.0030, type: 2, website: "https://stemciders.com" },
           { name: "Root Down", description: "With a focus on locally-sourced ingredients and sustainability, Root Down in Denver offers globally-inspired cuisine in a stylish, vibrant setting, popular for its inventive menu and creative cocktails.", latitude: 39.7695, longitude: -105.0030, type: 1, website: "https://rootdowndenver.com" }
           ],
           filters: [],
-          centerLat: 34.0522,
-          centerLng: -118.2437
+          selectedLocation: {}
       };
   },
   methods: {
@@ -650,8 +709,7 @@ export default {
       return this.filters.includes(filterType) ? 'chosen-filter' : '';
     },
     goToLocation(location) {
-      this.centerLat = location.latitude;
-      this.centerLng = location.longitude;
+      this.selectedLocation = location;
     }
   },
   computed: {
@@ -694,37 +752,15 @@ p {
   cursor: pointer;
   padding: 0.2rem 1rem;
 }
-.pink-border {
-  border: 1px solid var(--pink);
-  border-radius: 10px;
-}
-.yellow-border {
-  border: 1px solid var(--yellow);
-  border-radius: 10px;
-}
-.teal-border {
-  border: 1px solid var(--teal);
-  border-radius: 10px;
-}
-.orange-border {
-  border: 1px solid var(--orange);
-  border-radius: 10px;
-}
-.green-border {
-  border: 1px solid var(--green);
-  border-radius: 10px;
-}
 .dropdown {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin: 1rem 0;
-}
-.light-pink-background {
-  background-color: rgba(233, 79, 115, 0.525);
 }
 .image-container {
   display: flex;
@@ -752,7 +788,7 @@ p {
     z-index: 1;
 }
 .strikethrough::before {
-    border-top: 2px solid #dfdfdf;
+    border-top: 1px solid var(--primary-font-color);
     content:"";
     margin: 0 auto;
     position: absolute;
@@ -770,11 +806,12 @@ p {
     display: flex;
     flex-flow: row nowrap;
     height: 36rem;
+    margin-bottom: 4rem;
 }
 .best-of-location {
     padding: 1rem;
     position: relative;
-    background-color: lightgray;
+    background-color: #fee3e3d4;
     margin: 0.8rem;
     border-radius: 6px;
     cursor: pointer;
@@ -789,11 +826,10 @@ p {
 .small-left-aligned-text {
   font-weight: 600;
   font-size: 12px;
-  color: var(--pink);
+  color: var(--dark-pink);
   text-align: left;
 }
 .map-icon {
-  background-color: var(--teal);
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 2px;
@@ -804,9 +840,12 @@ p {
 .search-icon {
   float: left;
   margin-right: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .map-search-container {
-  background-color: lightgray;
+  background-color: #fee3e3d4;
   border-radius: 6px;
   margin: 0.8rem;
   padding: 0.4rem;
@@ -820,12 +859,12 @@ p {
   align-items: center;
 }
 .filter-title {
-  border: 1px solid var(--orange);
+  border: 1px solid var(--primary-font-color);
   border-radius: 16px;
   padding: 0.4rem 1.4rem;
 }
 .filter {
-  background-color: lightgray;
+  background-color: #fee3e3d4;
   border-radius: 16px;
   padding: 0.4rem 1.4rem;
   cursor: pointer;
