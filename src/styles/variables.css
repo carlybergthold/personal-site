@@ -1,48 +1,22 @@
 :root {
-  --teal: #2f9395;
-  --yellow: #ffe100;
-  --orange: #f16a43;
-  --pink: #eb3660;
-  --green: #22c42a;
-  --bg-main: #fafaeb;
+  --primary-background-color: #0018e7;
+  --primary-text-color: #00d9e7;
+  --secondary-background-color: #0079e7;
+  --secondary-text-color: #3801b3;
+  --tertiary-background-color: #00d9e7;
+  --tertiary-text-color: #0018e7;
+  --quaternary-background-color: #00e795;
+  --quaternary-text-color: #0466bf;
+
+  --background-color: lightgray;
+  --primary-font-color: black;
 }
 
-.teal-text {
-  color: var(--teal);
+.subtitle,
+a,
+.has-text-primary {
+  color: var(--primary-font-color) !important;
 }
-.yellow-text {
-  color: var(--yellow);
-}
-.orange-text {
-  color: var(--orange);
-}
-.green-text {
-  color: var(--green);
-}
-.pink-text {
-  color: var(--pink);
-}
-
-.teal-background {
-  background-color: var(--teal);
-}
-.yellow-background {
-  background-color: var(--yellow);
-}
-.orange-background {
-  background-color: var(--orange);
-}
-.green-background {
-  background-color: var(--green);
-}
-.pink-background {
-  background-color: var(--pink);
-}
-
-.has-text-primary, a {
-  color: var(--teal) !important;
-}
-
 .has-background-primary {
-  background-color: var(--teal) !important;
+  background-color: var(--primary-font-color) !important;
 }

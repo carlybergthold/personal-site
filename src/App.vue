@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <TopNav id="top-nav" />
     <router-view></router-view>
   </div>
@@ -19,8 +19,7 @@ export default {
 <style>
 #app {
   font-family: 'Noto Sans JP', sans-serif;
-}
-.hero {
-  background-color: var(--bg-main);
+  background-color: var(--background-color);
+  color: var(--primary-font-color);
 }
 </style>

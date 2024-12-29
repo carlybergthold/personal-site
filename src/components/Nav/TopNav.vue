@@ -1,108 +1,98 @@
 <template>
-  <b-navbar class="has-background-black">
-    <template #brand>
-      <b-navbar-item>
-        <router-link to="/home">
-          <span
-            class="teal-text nav-link"
-            >c</span
-          >
-          <span
-            class="yellow-text nav-link"
-            >a</span
-          >
-          <span
-            class="orange-text nav-link"
-            >r</span
-          >
-          <span
-            class="green-text nav-link"
-            >l</span
-          >
-          <span
-            class="pink-text nav-link"
-            >y</span
-          >
-
-          <span class="hidden-in-mobile">
-
-            
-            <span class="nav-link teal-text ml-5"
-            >b</span
-            >
-            <span class="nav-link yellow-text"
-            >e</span
-            >
-            <span class="nav-link orange-text"
-            >r</span
-            >
-            <span class="nav-link green-text"
-            >g</span
-            >
-            <span class="nav-link pink-text"
-            >t</span
-            >
-            <span class="nav-link teal-text"
-            >h</span
-            >
-            <span class="nav-link yellow-text"
-            >o</span
-            >
-            <span class="nav-link orange-text"
-            >l</span
-            >
-            <span class="nav-link green-text"
-            >d</span
-            >
-          </span>
-        </router-link>
-      </b-navbar-item>
-    </template>
-
-    <template #end>
-      <b-navbar-item class="hidden-in-desktop">
-        <router-link to="/home" class="nav-link">Home</router-link>
-      </b-navbar-item>
-      <b-navbar-item>
-        <router-link to="/about" class="nav-link">About</router-link>
-      </b-navbar-item>
-      <b-navbar-item>
-        <router-link to="/travels" class="nav-link">Travels</router-link>
-      </b-navbar-item>
-      <b-navbar-item>
-        <router-link to="/projects" class="nav-link">Projects</router-link>
-      </b-navbar-item>
-    </template>
-  </b-navbar>
+  <nav class="nav-bar">
+    <div class="nav-bar-brand">
+      <router-link to="/home" class="nav-bar-logo">CB</router-link>
+    </div>
+    <div class="nav-bar-menu" id="nav-barMenu">
+      <router-link to="/home" class="nav-bar-item">Home</router-link>
+      <router-link to="/about" class="nav-bar-item">About</router-link>
+      <router-link to="/travels" class="nav-bar-item">Travels</router-link>
+      <router-link to="/projects" class="nav-bar-item">Projects</router-link>
+    </div>
+    <button class="nav-bar-burger" @click="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  </nav>
 </template>
 
 <script>
 export default {
   name: "TopNav",
+  methods: {
+    toggleMenu() {
+      const navbarMenu = document.getElementById("nav-barMenu");
+      navbarMenu.classList.toggle("active");
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.navbar-brand .nav-link {
-  margin-left: 0.6rem;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
+.nav-bar {
+  padding: 1rem 1rem 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: red;
 }
-@media screen and (min-width: 1023px) {
-  .hidden-in-desktop {
-    display: none;
-  }
+
+.nav-bar-logo {
+  font-size: 2rem;
+  font-weight: 600;  
+  text-decoration: none;
 }
-@media screen and (max-width: 640px) {
-  .nav-link {
-    margin-left: 0.6rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-  .hidden-in-mobile {
+
+.nav-bar-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-bar-item {
+  text-decoration: none;
+  padding: 8px 12px;
+  color: var(--primary-font-color);
+}
+
+.nav-bar-item:hover {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.nav-bar-burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-bar-burger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: red;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .nav-bar-menu {
     display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .nav-bar-menu.active {
+    display: flex;
+  }
+
+  .nav-bar-burger {
+    display: flex;
+    color: red;
   }
 }
 </style>
