@@ -29,17 +29,17 @@
         </div>
       </div>
     </section>
-    <section class="hero is-fullheight-with-navbar has-background-primary has-text-white">
+    <section class="hero is-fullheight-with-navbar has-background-primary has-text-black">
       <div class="hero-body">
         <div class="columns">
             <div class="column is-one-third project-description">
-            <p class="headline title has-text-white">personal attributes</p>
+            <p class="headline title has-text-black">personal attributes</p>
             <p class="subtitle">client project (in progress)
               <br><span class="has-text-weight-light is-size-6">TECH: React.js, Bulma, Google Firebase</span>
             </p>
             <p>Discover your "spiritual personality" through quizzes, your interests, or your type from other popular personality frameworks like the Enneagram and Myers Briggs.</p>
             <p class="mt-4 is-size-5 has-text-weight-bold">
-              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="is-flex has-text-white">View on Github
+              <a href="https://github.com/carlybergthold/attributes" target="_blank" class="is-flex has-text-black">View on Github
                 <b-icon
                   pack="fas"
                   icon="angle-double-right"
