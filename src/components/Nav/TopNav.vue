@@ -4,10 +4,10 @@
       <router-link to="/home" class="nav-bar-logo">CB</router-link>
     </div>
     <div class="nav-bar-menu" id="nav-barMenu">
-      <router-link to="/home" class="nav-bar-item">Home</router-link>
-      <router-link to="/about" class="nav-bar-item">About</router-link>
-      <router-link to="/travels" class="nav-bar-item">Travels</router-link>
-      <router-link to="/projects" class="nav-bar-item">Projects</router-link>
+      <router-link to="/home" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
+      <router-link to="/about" class="nav-bar-item" @click="toggleMenu()">About</router-link>
+      <router-link to="/travels" class="nav-bar-item" @click="toggleMenu()">Travels</router-link>
+      <router-link to="/projects" class="nav-bar-item" @click="toggleMenu()">Projects</router-link>
     </div>
     <button class="nav-bar-burger" @click="toggleMenu()">
         <span></span>
@@ -35,7 +35,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: red;
+  color: var(--primary-font-color);;
 }
 
 .nav-bar-logo {
@@ -73,8 +73,9 @@ export default {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: red;
+  background-color: var(--primary-font-color);;
   transition: 0.3s;
+  z-index: 20;
 }
 
 @media (max-width: 768px) {
@@ -82,8 +83,17 @@ export default {
     display: none;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
-    padding-top: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    background-color: #ffffffed;
+    padding-top: 4rem;
+    padding-left: 0.4rem;
+    font-size: larger;
+    font-weight: 600;
+    z-index: 10;
   }
 
   .nav-bar-menu.active {
@@ -92,7 +102,7 @@ export default {
 
   .nav-bar-burger {
     display: flex;
-    color: red;
+    color: var(--primary-font-color);
   }
 }
 </style>
