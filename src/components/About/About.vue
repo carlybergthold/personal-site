@@ -14,8 +14,26 @@
           >
             <img v-show="!image.isHovering" :src="image.source" class="circle-image" :alt="image.name" :style="offsetRotation(index)">
             <div v-show="image.isHovering" class="circle-message" :style="offsetRotation(index)">{{ image.message }}</div>
-          </div>
+          </div> 
         </div>
+        <div class="icon-text-container">
+          <div v-for="image in getFirstFourImages" :key="image.name" class="icon" 
+            @click="image.isHovering = !image.isHovering" :style="getClickedImageStyle(image.isHovering)"
+            >
+            <img v-show="!image.isHovering" :src="image.source" class="mobile-image" :alt="image.name">
+            <div v-show="image.isHovering" class="mobile-message">{{ image.message }}</div>
+          </div>
+          <div class="text-div">
+            <p class="title headline has-text-primary">about me</p>
+            <p class="">A software developer with a background in digital marketing, I love enhancing web- and app-based user interactions with the power of programming. Learning to code has given me the ability not only to continuously learn and improve, but to give people better experiences with technology while I'm at it. My partner and I tried "slow traveling" last year. Visit <router-link to="/travels" style="text-decoration: underline;">the travel page</router-link> to learn more!</p>
+          </div>
+            <div v-for="image in getLastFourImages" :key="image.name" class="icon" 
+                      @click="image.isHovering = !image.isHovering" :style="getClickedImageStyle(image.isHovering)"
+              >
+              <img v-show="!image.isHovering" :src="image.source" class="mobile-image" :alt="image.name">
+              <div v-show="image.isHovering" class="mobile-message">{{ image.message }}</div>
+            </div>
+          </div>
       </div>
     </div>
   </section>
@@ -35,6 +53,9 @@ export default {
     offsetRotation(index) {
       const rotation = (index + 1) * 45;
       return `transform: rotate(-${rotation}deg)`;
+    },
+    getClickedImageStyle(isClicked) {
+      return isClicked ? 'background: white; color: var(--background-color)' : '';
     }
   },
   data() {
@@ -58,7 +79,15 @@ export default {
         message: "Trying new restaurants IS a hobby. Fight me", isHovering: false }
       ]
     }
-  }
+  },
+  computed: {
+    getFirstFourImages() {
+      return this.images.slice(0, 4);
+    },    
+    getLastFourImages() {
+      return this.images.slice(4, 8);
+    }
+}
 }
 </script>
 
@@ -75,8 +104,10 @@ export default {
 }
 .circle-container {
   position: relative;
-  width: 800px;
-  height: 800px;
+  width: 90vw;
+  height: 90vw;
+  max-width: 800px;
+  max-height: 800px;
   margin: 50px auto;
 }
 .center-circle {
@@ -84,8 +115,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px; 
-  height: 600px; 
+  width: 75%;
+  height: 75%;
   border-radius: 50%;
   background-color: #eee;
   padding: 10%;
@@ -96,15 +127,15 @@ export default {
   left: 50%;
   border: 1px solid white;
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 18.75%;
+  width: 18.75%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 .circle-image {
-  width: 150px;
+  width: 100%;
   border-radius: 50%;
   cursor: pointer;
   z-index: 1;
@@ -113,4 +144,52 @@ export default {
 .circle-message {
   padding: 16px;
 }
+.icon-text-container {
+    display: none;
+  }
+
+@media (max-width: 960px) {
+  .circle-container {
+    display: none;
+  }
+  .icon-text-container {
+    display: block;
+  }
+  .about-me-container {
+    display: block;
+  }
+  .text-div {
+    padding: 2rem;
+    margin: 2rem;
+    background: white;
+    border-radius: 40px;
+    max-width: 650px;
+  }
+  .headline {
+    font-size: 2rem;
+  }
+  .mobile-image-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+  }
+  .icon-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+  .icon {
+    width: 8.5rem;
+    height: 8.5rem;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px;
+  }
+}
+
 </style>
