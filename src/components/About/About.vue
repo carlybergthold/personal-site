@@ -2,37 +2,20 @@
   <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
       <div class="container has-text-centered about-me-container">
-        <div>
-          <p class="title headline has-text-primary">about me</p>
-          <p class="subtitle mx-6">A software developer with a background in digital marketing, I love enhancing web- and app-based user interactions with the power of programming. Learning to code has given me the ability not only to continuously learn and improve, but to give people better experiences with technology while I'm at it.</p>
-          <p class="subtitle mx-6">My husband and I are taking a nomad year to travel the U.S. Visit the travel page to see what we're up to!</p>
-          <p class="subtitle mx-6">Some things I love are:</p>
-          <div class="list-container">
-            <div class="list">
-              <ul>&#x2022; Biking to breweries</ul>
-              <ul>&#x2022; Cooking and finding new restaurants</ul>
-              <ul>&#x2022; Hiking, running, and basically any activity involving movement</ul>
-            </div>
+        <div class="circle-container">
+          <div class="center-circle">
+            <p class="title headline has-text-primary">about me</p>
+            <p class="subtitle mx-6">A software developer with a background in digital marketing, I love enhancing web- and app-based user interactions with the power of programming. Learning to code has given me the ability not only to continuously learn and improve, but to give people better experiences with technology while I'm at it.</p>
+            <p class="subtitle mx-6">My partner and I tried "slow traveling" last year. Visit <router-link to="/travels" style="text-decoration: underline;">the travel page</router-link> to learn more!</p>
+          </div>
+          <div v-for="(image, index) in images" :key="image.name" class="circle-image-container" 
+            @mouseover="image.isHovering = true" @mouseleave="image.isHovering = false"
+            :style="getImagePlacement(index)"
+          >
+            <img v-show="!image.isHovering" :src="image.source" class="circle-image" :alt="image.name" :style="offsetRotation(index)">
+            <div v-show="image.isHovering" class="circle-message" :style="offsetRotation(index)">{{ image.message }}</div>
           </div>
         </div>
-        <!-- <div>
-          <figure class="image airplane">
-            <img src="@/assets/images/about/airplane.png" class="max-image">
-            <p class="about-caption">I love to travel (who doesn't?!). Next on my list is Russia!</p>
-          </figure>
-          <figure class="image bike">
-            <img src="@/assets/images/about/bike.png" class="max-image">
-            <p class="about-caption">Biking to breweries is a thing.</p>
-          </figure>
-          <figure class="image cooking">
-            <img src="@/assets/images/about/cooking.png" class="max-image">
-            <p class="about-caption">Cooking is bae! Korean and Indian food have been my jam lately.</p>
-          </figure>
-          <figure class="image whiskey">
-            <img src="@/assets/images/about/whiskey.png" class="max-image">
-            <p class="about-caption">In true TN fashion, I'm a whiskey woman.</p>
-          </figure>
-        </div> -->
       </div>
     </div>
   </section>
@@ -44,8 +27,37 @@ export default {
   props: {
     msg: String
   },
+  methods: {
+    getImagePlacement(index) {
+      const rotation = (index + 1) * 45;
+      return `transform: translate(-50%, -50%) rotate(${rotation}deg) translateY(-400px)`;
+    },
+    offsetRotation(index) {
+      const rotation = (index + 1) * 45;
+      return `transform: rotate(-${rotation}deg)`;
+    }
+  },
   data() {
-    return { checked: false, title: 'Check me' }
+    return { 
+      images: [
+        { name: 'airplane', source: require(`@/assets/images/about/airplane.png`), 
+        message: "I've been to 39 countries (and counting!)", isHovering: false },
+        { name: 'whiskey', source: require(`@/assets/images/about/whiskey.png`), 
+        message: "I'll take a whiskey (neat) and a cigar, thanks", isHovering: false },
+      { name: 'barbell', source: require(`@/assets/images/about/barbell.png`), 
+        message: "I'll try any gym once! Currently doing CrossFit", isHovering: false },
+      { name: 'beer', source: require(`@/assets/images/about/beer.png`), 
+        message: "I will visit the local brewery as soon as I get into town", isHovering: false },
+      { name: 'bike', source: require(`@/assets/images/about/bike.png`), 
+        message: "I'm showing up with helmet hair. Oh well", isHovering: false },
+      { name: 'cooking', source: require(`@/assets/images/about/cooking.png`), 
+        message: "Trying a new recipe is the best way to unwind after work", isHovering: false },
+      { name: 'mountains', source: require(`@/assets/images/about/mountains.png`), 
+        message: "I adore hiking and would like to start backpacking", isHovering: false },
+      { name: 'pizza', source: require(`@/assets/images/about/pizza.png`), 
+        message: "Trying new restaurants IS a hobby. Fight me", isHovering: false }
+      ]
+    }
   }
 }
 </script>
@@ -61,39 +73,44 @@ export default {
 .hero-body {
   position: relative;
 }
-.image {
-  width: 15%;
+.circle-container {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  margin: 50px auto;
 }
-/* .airplane {
+.center-circle {
   position: absolute;
-  top: 2rem;
-  right: 5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; 
+  height: 600px; 
+  border-radius: 50%;
+  background-color: #eee;
+  padding: 10%;
 }
-.bike {
+.circle-image-container {
   position: absolute;
-  bottom: 8rem;
-  left: 2rem;
-}
-.cooking {
-  position: absolute;
-  bottom: 4rem;
-  right: 5rem;
-}
-.whiskey {
-  position: absolute;
-  top: 1rem;
-  left: 3rem;
-  width: 10%;
-} */
-.about-caption {
-  background-color: var(--pink);
-}
-.list-container {
+  top: 50%;
+  left: 50%;
+  border: 1px solid white;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.list {
-  text-align: left;
-  max-width: 40rem;
+.circle-image {
+  width: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+.circle-message {
+  padding: 16px;
 }
 </style>
