@@ -5,7 +5,7 @@
         <div class="circle-container">
           <div class="center-circle">
             <p class="title headline has-text-primary">about me</p>
-            <p class="subtitle mx-6">A software developer with a background in digital marketing, I love enhancing web- and app-based user interactions with the power of programming. Learning to code has given me the ability not only to continuously learn and improve, but to give people better experiences with technology while I'm at it.</p>
+            <p class="subtitle mx-6">Languages have always been a part of my life, from learning to read music as a kid to studying journalism in college and then becoming proficient (ok, passable) in Serbian during my English-teaching years. So when I began coding in my digital marketing job, the language of software development came naturally. Now you can find me programming daily - when I'm not outside, eating (probably fries), or nose-first in a book.</p>
             <p class="subtitle mx-6">My partner and I tried "slow traveling" last year. Visit <router-link to="/travels" style="text-decoration: underline;">the travel page</router-link> to learn more!</p>
           </div>
           <div v-for="(image, index) in images" :key="image.name" class="circle-image-container" 
@@ -119,7 +119,7 @@ export default {
   height: 75%;
   border-radius: 50%;
   background-color: #eee;
-  padding: 10%;
+  padding: 9%;
 }
 .circle-image-container {
   position: absolute;
