@@ -67,8 +67,19 @@
         <router-link to="/about" class="nav-link">About</router-link>
       </b-navbar-item>
       <b-navbar-item>
-        <router-link to="/travels" class="nav-link">Travels</router-link>
+        <router-link to="/travels" class="nav-link">Trav2els</router-link>
       </b-navbar-item>
+      <b-nav-item-dropdown
+        id="my-nav-dropdown"
+        text="Dropdown"
+        toggle-class="nav-link-custom"
+        right
+      >
+        <b-dropdown-item>One</b-dropdown-item>
+        <b-dropdown-item>Two</b-dropdown-item>
+        <b-dropdown-divider></b-dropdown-divider>
+        <b-dropdown-item>Three</b-dropdown-item>
+      </b-nav-item-dropdown>
       <b-navbar-item>
         <router-link to="/projects" class="nav-link">Projects</router-link>
       </b-navbar-item>
