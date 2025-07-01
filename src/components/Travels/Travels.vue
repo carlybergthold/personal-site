@@ -502,8 +502,7 @@ import LocationContainer from './LocationContainer.vue'
 
 export default {
     components: {
-    LocationContainer
-  },
+    LocationContainer  },
   name: 'OurTravels',
   title: 'Carly Bergthold - Travels',
   data() {

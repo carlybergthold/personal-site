@@ -68,7 +68,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--primary-font-color);;
+  color: var(--primary-font-color);
+  background-color: red;
 }
 
 .nav-bar-logo {

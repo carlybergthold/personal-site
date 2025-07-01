@@ -2,7 +2,7 @@
   <l-map
     :zoom="zoom"
     :center="[currentCenterLat, currentCenterLng]"
-    style="height: 100%; width: 100%; border-radius: 12px;"
+    style="height: 100%; width: 100%;"
     ref="map"
   >
     <l-tile-layer
@@ -12,26 +12,15 @@
     <l-marker
       v-for="(location, index) in allLocations"
       :key="index"
-      :lat-lng="[location.latitude, location.longitude]"
+      :latLng="[location.latitude, location.longitude]"
       :icon="defaultIcon"
       @click="goToLocation(location)"
-    >
-      <l-popup>
-        <div class="location-popup-container">
-          <div class="location-popup-title">{{ location.name }}</div>
-          <div class="location-popup-description">
-            <div>{{ location.selected }}</div>
-            <div>{{ location.description }}</div>
-            <div><a :href="location.website" target="_blank">Visit their website</a></div>
-          </div>
-        </div>
-      </l-popup>
-    </l-marker>
+    ></l-marker>
   </l-map>
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet';
+import { LMap, LTileLayer, LMarker } from '@vue-leaflet/vue-leaflet';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -66,8 +55,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker,
-    LPopup
+    LMarker
   },
   data() {
     return {
@@ -75,7 +63,6 @@ export default {
         iconUrl: require('../../assets/images/map/pink-pin.png'), 
         iconSize: [25, 41], 
         iconAnchor: [12, 41], 
-        popupAnchor: [1, -34], 
         shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
         shadowSize: [41, 41],  
         shadowAnchor: [12, 41]
@@ -114,21 +101,6 @@ export default {
 .leaflet-container {
   height: 100%;
   width: 100%;
-}
-.leaflet-popup-content {
-  width: 14rem;
-  min-height: 8rem;
-  font-size: 1rem;
-}
-.location-popup-container {
-  padding: 1rem;
-}
-.location-popup-title {
-  color: var(--primary-background-color);
-  font-weight: 600;
-}
-.location-popup-description {
-  margin-top: 0.4rem;
 }
 .leaflet-marker-icon {
   height: 2rem !important;

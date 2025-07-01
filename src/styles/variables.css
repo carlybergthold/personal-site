@@ -20,3 +20,6 @@ a,
 .has-background-primary {
   background-color: var(--primary-font-color) !important;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
