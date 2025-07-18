@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-bar">
     <div class="nav-bar-brand">
-      <router-link to="/home" class="nav-bar-logo">CB</router-link>
+      <router-link to="/home" class="nav-bar-logo">Carly B</router-link>
     </div>
     <div class="nav-bar-menu" id="nav-barMenu">
       <router-link to="/home" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
@@ -68,8 +68,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--primary-font-color);
-  background-color: red;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .nav-bar-logo {
@@ -86,7 +87,6 @@ export default {
 .nav-bar-item {
   text-decoration: none;
   padding: 8px 12px;
-  color: var(--primary-font-color);
 }
 
 .nav-bar-item:hover {
@@ -97,7 +97,7 @@ export default {
 .nav-bar-burger {
   display: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
@@ -106,10 +106,9 @@ export default {
 .nav-bar-burger span {
   display: block;
   width: 25px;
-  height: 3px;
-  background-color: var(--primary-font-color);;
+  height: 2px;
   transition: 0.3s;
-  z-index: 20;
+  background-color: white;
 }
 
 .nav-dropdown-parent {
@@ -143,7 +142,6 @@ export default {
     padding-left: 0.4rem;
     font-size: larger;
     font-weight: 600;
-    z-index: 10;
   }
 
   .nav-bar-menu.active {
@@ -152,7 +150,6 @@ export default {
 
   .nav-bar-burger {
     display: flex;
-    color: var(--primary-font-color);
   }
 }
 </style>

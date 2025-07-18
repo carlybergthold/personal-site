@@ -50,6 +50,7 @@
               @click="showFilter = true"
           ></b-icon>
       </div>
+      <div class="airbnb"></div>
   </div>
   <div v-if="showFilter" class="filter">
     <div class="close-button">
@@ -197,7 +198,7 @@ p {
     border: 1px solid var(--green);
     display: flex;
     flex-flow: row nowrap;
-    height: 87vh;
+    height: 100%;
 }
 .best-of-location {
     padding: 1rem;
@@ -414,6 +415,14 @@ p {
   align-items: center;
   padding: 0 12px;
   margin: 4rem 0 1rem 0;
+}
+
+.airbnb {
+  height: 20px;
+  width: 35px;
+  background-color:white;
+  border-radius: 10px;
+  border: 1px solid black;
 }
 
 @media screen and (max-width: 640px) {

@@ -19,7 +19,7 @@ export default {
 <style>
 #app {
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: var(--background-color);
-  color: var(--primary-font-color);
+  /* background-color: var(--background-color);
+  color: var(--primary-font-color); */
 }
 </style>
