@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight-with-navbar">
+  <section class="hero">
       <div class="best-of-container">
         <Map 
           :allLocations="allLocations" 
@@ -24,9 +24,20 @@
       <div class="location-description">
         <div>{{ selectedLocation.selected }}</div>
         <div>{{ selectedLocation.description }}</div>
-        <a :href="selectedLocation.website" target="_blank" class="location-website">Visit their website</a>
+        <a v-if="selectedLocation.website" :href="selectedLocation.website" target="_blank" class="location-website">Visit their website</a>
       </div>
     </div>  
+    <!-- <div class="location-action">
+      <div>     
+        <div>Carly review here? some text about how I like it? what if I don't want to actually write a story about every single place</div> 
+        <b-icon
+          pack="fas"
+          icon="star"
+          size="is-medium"
+          type="is-black"
+        ></b-icon>
+      </div>
+    </div> -->
   </div>
   <!-- <BottomBar></BottomBar> -->
   <div class="bottom-bar">
@@ -37,7 +48,7 @@
               size="is-medium"
               type="is-white"
               class="filter-icon"
-              @click="showSearch = true"
+              @click="closeAllPopups(), showSearch = true"
           ></b-icon>
       </div>        
       <div>      
@@ -47,7 +58,7 @@
               size="is-medium"
               type="is-white"
               class="filter-icon"
-              @click="showFilter = true"
+              @click="closeAllPopups(), showFilter = true"
           ></b-icon>
       </div>
       <div class="airbnb"></div>
@@ -155,6 +166,7 @@ export default {
     },
     goToLocation(location) {
       this.selectedLocation = location;
+      this.closeAllPopups();
       this.showLocationDetail = true;
     },
     getFilterByTypeId(typeId) {
@@ -175,6 +187,11 @@ export default {
         case 4:
           return 'mountain';
       }
+    },
+    closeAllPopups() {
+      this.showLocationDetail = false;
+      this.showFilter = false;
+      this.showSearch = false;
     }
   },
   computed: {
@@ -198,7 +215,7 @@ p {
     border: 1px solid var(--green);
     display: flex;
     flex-flow: row nowrap;
-    height: 100%;
+    height: 90vh;
 }
 .best-of-location {
     padding: 1rem;
@@ -225,6 +242,7 @@ p {
 .location-website {
   color: white !important;
   font-style: italic;
+  margin-top: 1rem;
 }
 .search-icon {
   float: left;
@@ -256,10 +274,10 @@ p {
   height: 20rem;
   background-color: var(--primary-font-color);
   color: white;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   z-index: 1400;
+  padding-top: 3rem;
 }
 
 .close-button {
@@ -283,7 +301,8 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .location-title {
@@ -292,9 +311,16 @@ p {
   margin-bottom: 0.5rem;
 }   
 
-/* .location-description {
+.location-description {
+  display: flex;
+  flex-flow: column;
+}
 
-} */
+.location-action {
+  background: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 .bottom-bar {
   position: fixed;

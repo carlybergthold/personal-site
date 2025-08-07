@@ -421,7 +421,28 @@ const VisitedLocations = [
     latitude: 32.9211,
     longitude: -117.2526,
     typeId: 4
+  },
+  //MAINE
+  {
+    name: "Louisville",
+    description: "description",
+    latitude: 0,
+    longitude: 0,
+    typeId: 0
+  },
+  //LOUISVILLE
+  {
+    name: "Awry",
+    description: "description",
+    latitude: 0,
+    longitude: 0,
+    typeId: 0
   }
+  //the grales
+  //gravely
+  //atrium
+  //reingiest (cincy)
+  //milewide
 ];
 
 export default VisitedLocations;

@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight-with-navbar">
+  <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container has-text-centered">
 
@@ -713,13 +713,6 @@ p {
     display: flex;
     flex-flow: column;
     align-items: center;
-}
-.best-of-container {
-    border: 1px solid var(--green);
-    display: flex;
-    flex-flow: row nowrap;
-    height: 36rem;
-    margin-bottom: 4rem;
 }
 .best-of-location {
     padding: 1rem;

@@ -1,27 +1,21 @@
 <template>
   <nav class="nav-bar">
     <div class="nav-bar-brand">
-      <router-link to="/home" class="nav-bar-logo">Carly B</router-link>
+      <router-link to="/home" class="nav-bar-logo">CB</router-link>
     </div>
     <div class="nav-bar-menu" id="nav-barMenu">
       <router-link to="/home" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
       <router-link to="/about" class="nav-bar-item" @click="toggleMenu()">About</router-link>
-      <!-- <router-link to="/travels" class="nav-bar-item" @click="toggleMenu()">
-        <div class="nav-dropdown-parent" @click="showDropdownItems=!showDropdownItems">
-          Travels<b-icon pack="fas" icon="angle-down" size="is-small"></b-icon>
-        </div>
-        <router-link v-if="showDropdownItems" to="/travels" class="nav-dropdown-item nav-bar-item">Stories</router-link>
-        <router-link v-if="showDropdownItems" to="/travels" class="nav-dropdown-item nav-bar-item">Beer Map</router-link>
-      </router-link> -->
-      <div class="carly1" @click="toggleMenu()">
-        <div class="carly nav-bar-item">
-          <div class="nav-dropdown-parent" @click="showDropdownItems=!showDropdownItems">
-            Travels<b-icon pack="fas" icon="angle-down" size="is-small"></b-icon>
-          </div>
-          <router-link v-if="showDropdownItems" to="/travels" class="nav-dropdown-item"
-          @click="showDropdownItems=false">Stories</router-link>
-          <router-link v-if="showDropdownItems" to="/map" class="nav-dropdown-item"
-          @click="showDropdownItems=false">Beer Map</router-link>
+      <router-link to="/travels" class="nav-bar-item hidden-in-desktop" @click="toggleMenu()">Blog</router-link>
+      <router-link to="/map" class="nav-bar-item hidden-in-desktop" @click="toggleMenu()">Map</router-link>
+      <div class="nav-bar-item nav-dropdown-parent hidden-in-mobile"
+           @mouseenter="showDropdownItems = true"
+           @mouseleave="showDropdownItems = false">
+        Travels
+        <svg style="margin-left: 2px;" width="12" height="12" viewBox="0 0 20 20"><path d="M5.5 8l4.5 4 4.5-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div v-if="showDropdownItems" class="nav-dropdown-menu">
+          <router-link to="/travels" class="nav-dropdown-item" @click="toggleMenu()">Blog</router-link>
+          <router-link to="/map" class="nav-dropdown-item" @click="toggleMenu()">Map</router-link>
         </div>
       </div>
       <router-link to="/projects" class="nav-bar-item" @click="toggleMenu()">Projects</router-link>
@@ -36,41 +30,28 @@
 
 <script>
 export default {
-  name: "TopNav",
+  name: "TopNav",  
+  data() {
+    return {
+      showDropdownItems: false
+    }
+  },
   methods: {
     toggleMenu() {
       const navbarMenu = document.getElementById("nav-barMenu");
       navbarMenu.classList.toggle("active");
-    }
-  },
-  data() {
-    return {
-      showDropdownItems: false
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.carly1 {
-  position:relative;
-  width: 75px;
-}
-.carly {
-  display:flex;
-  flex-direction: column;
-  position: absolute;
-  top:0;
-  left:0;
-}
 .nav-bar {
   padding: 1rem 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  color: var(--primary-font-color);;
 }
 
 .nav-bar-logo {
@@ -84,20 +65,31 @@ export default {
   gap: 20px;
 }
 
+.nav-dropdown-parent {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+}
+
 .nav-bar-item {
   text-decoration: none;
   padding: 8px 12px;
+  color: var(--primary-font-color);
 }
 
-.nav-bar-item:hover {
-  background-color: #555;
-  border-radius: 4px;
+.router-link-active {
+  font-weight: 900;
 }
 
 .nav-bar-burger {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
@@ -106,25 +98,14 @@ export default {
 .nav-bar-burger span {
   display: block;
   width: 25px;
-  height: 2px;
+  height: 3px;
+  background-color: var(--primary-font-color);;
   transition: 0.3s;
-  background-color: white;
+  z-index: 20;
 }
 
-.nav-dropdown-parent {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-// .nav-dropdown-item {
-//   position: absolute;
-//   margin-top: 0.5rem;
-// }
-
-.nav-dropdown-item:hover {
-    background-color: #555;
-    border-radius: 4px;
+.hidden-in-desktop {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -142,6 +123,7 @@ export default {
     padding-left: 0.4rem;
     font-size: larger;
     font-weight: 600;
+    z-index: 10;
   }
 
   .nav-bar-menu.active {
@@ -150,6 +132,15 @@ export default {
 
   .nav-bar-burger {
     display: flex;
+    color: var(--primary-font-color);
+  }
+
+  .hidden-in-mobile {
+    display: none;
+  }
+
+  .hidden-in-desktop {
+    display: block;
   }
 }
 </style>

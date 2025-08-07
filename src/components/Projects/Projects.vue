@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero is-fullheight-with-navbar">
+    <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="columns">
           <div class="column is-one-third project-description">
@@ -29,7 +29,7 @@
         </div>
       </div>
     </section>
-    <section class="hero is-fullheight-with-navbar has-background-primary has-text-black">
+    <section class="hero is-fullheight has-background-primary has-text-black">
       <div class="hero-body">
         <div class="columns">
             <div class="column is-one-third project-description">
