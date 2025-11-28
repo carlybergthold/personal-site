@@ -2,7 +2,7 @@
   <section class="hero">
       <div class="best-of-container">
         <Map 
-          :allLocations="allLocations" 
+          :allLocations="filteredLocations" 
           :selectedLocation="selectedLocation" 
           :goToLocation="goToLocation"
         ></Map>
@@ -110,7 +110,16 @@
         @click="showSearch = false"
       ></b-icon>
     </div>
-    <div class="search-bar">Search</div>
+    <div>
+      <input
+        v-model="searchText"
+        type="text"
+        placeholder="Search"
+        class="search-bar"
+        autofocus
+      />
+      <!-- <button class="button" @click="performSearch">Search</button> -->
+    </div>
   </div>
 </template>
 
@@ -156,7 +165,8 @@ export default {
           allLocations: VisitedLocations,
           showLocationDetail: false,
           showFilter: false,
-          showSearch: false
+          showSearch: false,
+          searchText: ''
       };
   },
   methods: {
@@ -196,9 +206,20 @@ export default {
   },
   computed: {
     filteredLocations() {
-      return this.filters.length === 0
-        ? this.allLocations
-        : this.allLocations.filter(x => this.filters.includes(x.type));
+      let locations = this.allLocations;
+
+      if (this.filters.length === 0) {
+        locations = this.allLocations.filter(x => this.filters.includes(x.type));
+      }
+
+      if (this.searchText) {
+        locations = locations.filter(location => 
+          location.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          location.description.toLowerCase().includes(this.searchText.toLowerCase())
+        );
+      } 
+
+      return locations;
     }
   }
 }

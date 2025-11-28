@@ -101,7 +101,7 @@ export default {
   height: 3px;
   background-color: var(--primary-font-color);;
   transition: 0.3s;
-  z-index: 20;
+  z-index: 600;
 }
 
 .hidden-in-desktop {
@@ -123,7 +123,7 @@ export default {
     padding-left: 0.4rem;
     font-size: larger;
     font-weight: 600;
-    z-index: 10;
+    z-index: 599;
   }
 
   .nav-bar-menu.active {
