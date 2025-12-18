@@ -7,7 +7,7 @@
       <router-link to="/home" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
       <router-link to="/about" class="nav-bar-item" @click="toggleMenu()">About</router-link>
       <router-link to="/travels" class="nav-bar-item" @click="toggleMenu()">Travels</router-link>
-      <router-link to="/projects" class="nav-bar-item" @click="toggleMenu()">Projects</router-link>
+      <!-- <router-link to="/projects" class="nav-bar-item" @click="toggleMenu()">Projects</router-link> -->
     </div>
     <button class="nav-bar-burger" @click="toggleMenu()">
         <span></span>
