@@ -4,8 +4,8 @@
       <router-link to="/home" class="nav-bar-logo">CB</router-link>
     </div>
     <div class="nav-bar-menu" id="nav-barMenu">
-      <router-link to="/home" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
-      <router-link to="/about" class="nav-bar-item" @click="toggleMenu()">About</router-link>
+      <router-link :to="{ path: '/home', hash: '#home' }" class="nav-bar-item" @click="toggleMenu()">Home</router-link>
+      <router-link :to="{ path: '/home', hash: '#about' }" class="nav-bar-item" @click="toggleMenu()">About</router-link>
       <!-- <router-link to="/travels" class="nav-bar-item" @click="toggleMenu()">Travels</router-link> -->
       <!-- <router-link to="/projects" class="nav-bar-item" @click="toggleMenu()">Projects</router-link> -->
     </div>

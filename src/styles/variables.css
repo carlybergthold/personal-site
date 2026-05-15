@@ -1,22 +1,18 @@
 :root {
-  --primary-background-color: #0018e7;
-  --primary-text-color: #00d9e7;
-  --secondary-background-color: #0079e7;
-  --secondary-text-color: #3604a6;
-  --tertiary-background-color: #00d9e7;
-  --tertiary-text-color: #0018e7;
-  --quaternary-background-color: #00e795;
-  --quaternary-text-color: #0466bf;
-
-  --background-color: lightgray;
-  --primary-font-color: black;
+  --off-white: #f1d9d9;
 }
-
-.subtitle,
-a,
-.has-text-primary {
-  color: var(--primary-font-color) !important;
+html {
+  scroll-behavior: smooth;
 }
-.has-background-primary {
-  background-color: var(--primary-font-color) !important;
+.monograph {
+  font-family:'monograph';
+}
+.retro-lagoon {
+  font-family:'retro lagoon personal use';
+}
+.super-retro {
+  font-family:'super retro m54';
+}
+.chuck-noon {
+  font-family:'chuck noon';
 }
