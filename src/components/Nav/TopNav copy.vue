@@ -66,9 +66,9 @@
       <b-navbar-item>
         <router-link to="/about" class="nav-link">About</router-link>
       </b-navbar-item>
-      <b-navbar-item>
+      <!-- <b-navbar-item>
         <router-link to="/travels" class="nav-link">Travels</router-link>
-      </b-navbar-item>
+      </b-navbar-item> -->
       <b-navbar-item>
         <router-link to="/projects" class="nav-link">Projects</router-link>
       </b-navbar-item>

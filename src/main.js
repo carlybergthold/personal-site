@@ -6,6 +6,7 @@ import Projects from "./components/Projects/Projects.vue";
 import About from "./components/About/About.vue";
 import Animation from "./components/Projects/Animation.vue";
 import Travels from "./components/Travels/Travels.vue";
+import Resume from "./components/About/Resume.vue";
 import UhOh from "./components/UhOh.vue";
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
@@ -26,6 +27,7 @@ const routes = [
   { path: '/about', component: About, name: 'About', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
   { path: '/animation', component: Animation, name: 'Animation', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
   { path: '/travels', component: Travels, name: 'Travels', meta: { backgroundColor: 'var(--tertiary-background-color)', primaryFontColor: 'var(--tertiary-text-color)' } },
+  { path: '/resume', component: Resume, name: 'Resume', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } },
   { path: '/*', component: UhOh, name: 'Home2', meta: { backgroundColor: 'var(--primary-background-color)', primaryFontColor: 'var(--primary-text-color)' } }
 ];
 

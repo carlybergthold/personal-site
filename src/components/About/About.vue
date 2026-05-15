@@ -4,9 +4,8 @@
       <div class="container has-text-centered about-me-container">
         <div class="circle-container">
           <div class="center-circle">
-            <p class="title headline has-text-primary">about me</p>
-            <p class="subtitle mx-6">Languages have always been a part of my life, from learning to read music as a kid to studying journalism in college and then becoming proficient (ok, passable) in Serbian during my English-teaching years. So when I began coding in my digital marketing job, the language of software development came naturally. Now you can find me programming daily - when I'm not outside, eating (probably fries), or nose-first in a book.</p>
-            <p class="subtitle mx-6">My partner and I tried "slow traveling" last year. Visit <router-link to="/travels" style="text-decoration: underline;">the travel page</router-link> to learn more!</p>
+            <p class="title headline orange-text">about me</p>
+            <p class="subtitle mx-6 orange-text">{{ aboutMeSubtitle }}</p>
           </div>
           <div v-for="(image, index) in images" :key="image.name" class="circle-image-container" 
             @mouseover="image.isHovering = true" @mouseleave="image.isHovering = false"
@@ -24,8 +23,8 @@
             <div v-show="image.isHovering" class="mobile-message">{{ image.message }}</div>
           </div>
           <div class="text-div">
-            <p class="title headline has-text-primary">about me</p>
-            <p class="">A software developer with a background in digital marketing, I love enhancing web- and app-based user interactions with the power of programming. Learning to code has given me the ability not only to continuously learn and improve, but to give people better experiences with technology while I'm at it. My partner and I tried "slow traveling" last year. Visit <router-link to="/travels" style="text-decoration: underline;">the travel page</router-link> to learn more!</p>
+            <p class="title headline orange-text">about me</p>
+            <p class="orange-text">{{ aboutMeSubtitle }}</p>
           </div>
             <div v-for="image in getLastFourImages" :key="image.name" class="icon" 
                       @click="image.isHovering = !image.isHovering" :style="getClickedImageStyle(image.isHovering)"
@@ -60,15 +59,16 @@ export default {
   },
   data() {
     return { 
+      aboutMeSubtitle: "Languages have always been a part of my life, from learning to read music as a kid to studying journalism in college and then becoming proficient (ok, passable) in Serbian during my English-teaching years. So when I began coding in my digital marketing job, the language of software development came naturally. Now you can find me programming daily - when I'm not outside, eating (probably fries), or nose-first in a book.",
       images: [
         { name: 'airplane', source: require(`@/assets/images/about/airplane.png`), 
-        message: "I've been to 39 countries (and counting!)", isHovering: false },
+        message: "I've been to 40 countries (and counting!)", isHovering: false },
         { name: 'whiskey', source: require(`@/assets/images/about/whiskey.png`), 
         message: "I'll take a whiskey (neat) and a cigar, thanks", isHovering: false },
       { name: 'barbell', source: require(`@/assets/images/about/barbell.png`), 
-        message: "I'll try any gym once! Currently doing CrossFit", isHovering: false },
+        message: "I'll try any workout at least once!", isHovering: false },
       { name: 'beer', source: require(`@/assets/images/about/beer.png`), 
-        message: "I will visit the local brewery as soon as I get into town", isHovering: false },
+        message: "Please guide me to the local brewery", isHovering: false },
       { name: 'bike', source: require(`@/assets/images/about/bike.png`), 
         message: "I'm showing up with helmet hair. Oh well", isHovering: false },
       { name: 'cooking', source: require(`@/assets/images/about/cooking.png`), 
@@ -147,6 +147,9 @@ export default {
 .icon-text-container {
     display: none;
   }
+.orange-text {
+  color: #d37210 !important;
+}
 
 @media (max-width: 960px) {
   .circle-container {
@@ -178,6 +181,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1rem;
+
 }
   .icon {
     width: 8.5rem;
@@ -190,6 +194,20 @@ export default {
     cursor: pointer;
     padding: 4px;
   }
+  .text-div {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 660px) {
+  .icon-text-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
 }
 
 </style>
